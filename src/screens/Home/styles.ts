@@ -2,11 +2,11 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import styled from "styled-components/native"
 
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
+import { FlatList } from "react-native"
 
 export const Container = styled.View`
   flex: 1;
-
-  align-items: center;
+  background: ${({ theme }) => theme.colors.background_primary};
 `
 
 export const Header = styled.View`
@@ -29,3 +29,8 @@ export const TotalCars = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFValue(15)}px;
 `
+
+export const CarList = styled(FlatList).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { padding: 24 },
+})``

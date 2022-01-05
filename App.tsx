@@ -14,7 +14,8 @@ import {
 import AppLoading from "expo-app-loading"
 import { ThemeProvider } from "styled-components/native"
 import theme from "./src/global/styles/theme"
-import { Home } from "./src/screens/Home"
+import { CardDetails } from "./src/screens/CardDetails"
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,7 +31,9 @@ export default function App() {
   } else {
     return (
       <ThemeProvider theme={theme}>
-        <Home />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <CardDetails />
+        </GestureHandlerRootView>
       </ThemeProvider>
     )
   }

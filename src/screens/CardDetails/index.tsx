@@ -25,6 +25,7 @@ import Force from "../../assets/force.svg"
 import Gasoline from "../../assets/gasoline.svg"
 import Exchange from "../../assets/exchange.svg"
 import People from "../../assets/people.svg"
+import { Button } from "../../components/Button"
 
 export const CardDetails = () => {
   return (
@@ -68,6 +69,7 @@ export const CardDetails = () => {
           indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
           para quem gosta de acelerar.
         </About>
+        <Button title="Escolher período do aluguel" />
       </Content>
     </Container>
   )

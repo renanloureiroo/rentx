@@ -14,6 +14,7 @@ import {
   Rent,
   Period,
   Price,
+  About,
 } from "./styles"
 
 export const CardDetails = () => {
@@ -43,6 +44,12 @@ export const CardDetails = () => {
             <Price>R$ 580</Price>
           </Rent>
         </Details>
+
+        <About>
+          Este é automóvel desportivo. Surgiu do lendário touro de lide
+          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
+          para quem gosta de acelerar.
+        </About>
       </Content>
     </Container>
   )

@@ -66,3 +66,11 @@ export const Price = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_500};
   font-size: ${RFValue(25)}px;
 `
+export const About = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary_400};
+  font-size: ${RFValue(15)}px;
+  color: ${({ theme }) => theme.colors.text};
+
+  text-align: justify;
+  margin-top: 23px;
+`

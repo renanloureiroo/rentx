@@ -10,7 +10,7 @@ interface Props extends RectButtonProps {
 
 export const Button = ({ title, color, ...rest }: Props) => {
   return (
-    <Container {...rest}>
+    <Container color={color} {...rest}>
       <Title>{title}</Title>
     </Container>
   )

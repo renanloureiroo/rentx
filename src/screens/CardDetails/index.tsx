@@ -17,6 +17,7 @@ import {
   Price,
   About,
   Accessories,
+  Footer,
 } from "./styles"
 
 import Speed from "../../assets/speed.svg"
@@ -69,8 +70,10 @@ export const CardDetails = () => {
           indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
           para quem gosta de acelerar.
         </About>
-        <Button title="Escolher período do aluguel" />
       </Content>
+      <Footer>
+        <Button title="Escolher período do aluguel" />
+      </Footer>
     </Container>
   )
 }

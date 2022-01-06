@@ -27,7 +27,7 @@ export const Content = styled.ScrollView.attrs({
     paddingHorizontal: 24,
     alignItems: "center",
   },
-  showVerticalScrollIndicator: false,
+  showsVerticalScrollIndicator: false,
 })``
 
 export const Details = styled.View`
@@ -83,4 +83,13 @@ export const Accessories = styled.View`
   justify-content: space-between;
 
   margin-top: 16px;
+`
+
+export const Footer = styled.View`
+  width: 100%;
+  height: 111px;
+  background: ${({ theme }) => theme.colors.background_primary};
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 `

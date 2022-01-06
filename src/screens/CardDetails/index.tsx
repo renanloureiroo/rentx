@@ -2,7 +2,19 @@ import React from "react"
 import { BackButton } from "../../components/BackButton"
 import { ImageSlider } from "../../components/ImageSlider"
 
-import { Container, Header, CarImages } from "./styles"
+import {
+  Container,
+  Header,
+  CarImages,
+  Content,
+  Details,
+  Description,
+  Brand,
+  Name,
+  Rent,
+  Period,
+  Price,
+} from "./styles"
 
 export const CardDetails = () => {
   return (
@@ -18,6 +30,20 @@ export const CardDetails = () => {
           ]}
         />
       </CarImages>
+
+      <Content>
+        <Details>
+          <Description>
+            <Brand>Lamburguini</Brand>
+            <Name>Huracan</Name>
+          </Description>
+
+          <Rent>
+            <Period>ao dia</Period>
+            <Price>R$ 580</Price>
+          </Rent>
+        </Details>
+      </Content>
     </Container>
   )
 }

@@ -14,6 +14,12 @@ export const Header = styled.View`
   padding: ${getStatusBarHeight() + 19}px 34px 32px;
 `
 
+export const ButtonContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+
 export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.background_secondary};
   font-size: ${RFValue(30)}px;

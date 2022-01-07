@@ -3,7 +3,7 @@ import React from "react"
 import { useTheme } from "styled-components"
 import { BackButton } from "../../components/BackButton"
 
-import { Container, Header, Title } from "./styles"
+import { Container, Header, Title, ButtonContainer } from "./styles"
 
 export const Scheduling = () => {
   const theme = useTheme()
@@ -11,10 +11,9 @@ export const Scheduling = () => {
     <Container>
       <StatusBar style="light" backgroundColor="transparent" translucent />
       <Header>
-        <BackButton
-          color={theme.colors.background_secondary}
-          borderless={false}
-        />
+        <ButtonContainer>
+          <BackButton color={theme.colors.background_secondary} />
+        </ButtonContainer>
 
         <Title>
           Escolha uma{"\n"}data de início e{"\n"}fim do aluguel

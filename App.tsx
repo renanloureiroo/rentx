@@ -18,6 +18,7 @@ import {
 import theme from "./src/global/styles/theme"
 
 import { Scheduling } from "./src/screens/Scheduling"
+import { CardDetails } from "./src/screens/CardDetails"
 
 export default function App() {
   const [fontsLoaded] = useFonts({

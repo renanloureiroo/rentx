@@ -20,6 +20,7 @@ import theme from "./src/global/styles/theme"
 import { Scheduling } from "./src/screens/Scheduling"
 import { SchedulingDetails } from "./src/screens/SchedulingDetails"
 import { CardDetails } from "./src/screens/CardDetails"
+import { SchedulingComplete } from "./src/screens/SchedulingComplete"
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,7 +37,7 @@ export default function App() {
     return (
       <ThemeProvider theme={theme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <SchedulingDetails />
+          <SchedulingComplete />
         </GestureHandlerRootView>
       </ThemeProvider>
     )

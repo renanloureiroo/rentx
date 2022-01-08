@@ -42,7 +42,7 @@ export const Subtitle = styled.Text`
   margin-top: 16px;
 `
 
-export const ButtonContainer = styled.View`
+export const Footer = styled.View`
   margin: 80px 0px ${getBottomSpace() + 46}px 0px;
   justify-content: center;
   align-items: center;

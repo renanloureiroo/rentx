@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
 
-import { ButtonContainer, Container, Content, Subtitle, Title } from "./styles"
+import { Footer, Container, Content, Subtitle, Title } from "./styles"
 
 import LogoBackground from "../../assets/logo_background_gray.svg"
 import Done from "../../assets/done.svg"
@@ -26,9 +26,9 @@ export const SchedulingComplete = () => {
         </Subtitle>
       </Content>
 
-      <ButtonContainer>
-        <ConfirmButton />
-      </ButtonContainer>
+      <Footer>
+        <ConfirmButton title="OK" />
+      </Footer>
     </Container>
   )
 }

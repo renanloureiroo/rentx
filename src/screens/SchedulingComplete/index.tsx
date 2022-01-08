@@ -14,11 +14,14 @@ import LogoBackground from "../../assets/logo_background_gray.svg"
 import Done from "../../assets/done.svg"
 import { RFValue } from "react-native-responsive-fontsize"
 
+import { useWindowDimensions } from "react-native"
+
 export const SchedulingComplete = () => {
+  const { width } = useWindowDimensions()
   return (
     <Container>
       <StatusBar style="light" translucent backgroundColor="transparent" />
-      <LogoBackground width={"100%"} height={RFValue(235)} />
+      <LogoBackground width={width} />
 
       <Content>
         <Done width={80} height={80} />

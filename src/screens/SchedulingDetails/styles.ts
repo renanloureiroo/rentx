@@ -126,7 +126,11 @@ export const DateValue = styled.Text`
 `
 
 export const CalendarIcon = styled.View`
-  padding: 12px;
+  width: 48px;
+  height: 48px;
+
+  justify-content: center;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.main};
 `
 export const PriceContainer = styled.View`
@@ -142,6 +146,8 @@ export const PriceTitle = styled.Text`
   color: ${({ theme }) => theme.colors.text_detail};
   font-family: ${({ theme }) => theme.fonts.secondary_500};
   font-size: ${RFValue(10)}px;
+
+  text-transform: uppercase;
 `
 
 export const PriceInfo = styled.Text`

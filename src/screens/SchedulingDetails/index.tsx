@@ -39,6 +39,7 @@ import Exchange from "../../assets/exchange.svg"
 import People from "../../assets/people.svg"
 import { Button } from "../../components/Button"
 import { useTheme } from "styled-components"
+import { RFValue } from "react-native-responsive-fontsize"
 
 export const SchedulingDetails = () => {
   const theme = useTheme()
@@ -83,17 +84,21 @@ export const SchedulingDetails = () => {
             <Feather
               name="calendar"
               color={theme.colors.background_secondary}
-              size={24}
+              size={RFValue(24)}
             />
           </CalendarIcon>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue>07/01/2022</DateValue>
+            <DateValue>08/01/2022</DateValue>
           </DateInfo>
-          <Feather name="chevron-right" color={theme.colors.text} size={20} />
+          <Feather
+            name="chevron-right"
+            color={theme.colors.text}
+            size={RFValue(20)}
+          />
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
-            <DateValue>07/01/2022</DateValue>
+            <DateValue>10/01/2022</DateValue>
           </DateInfo>
         </RentPeriod>
 

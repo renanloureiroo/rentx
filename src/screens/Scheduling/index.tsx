@@ -18,6 +18,7 @@ import {
 
 import Arrow from "../../assets/arrow.svg"
 import { Button } from "../../components/Button"
+import { Calendar } from "../../components/Calendar"
 
 export const Scheduling = () => {
   const theme = useTheme()
@@ -47,7 +48,9 @@ export const Scheduling = () => {
         </RentPeriod>
       </Header>
 
-      <Content></Content>
+      <Content>
+        <Calendar />
+      </Content>
 
       <Footer>
         <Button title="Confirmar" />

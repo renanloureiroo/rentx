@@ -18,8 +18,9 @@ export const Header = styled.View`
   height: ${RFValue(325)}px;
   background: ${({ theme }) => theme.colors.header};
 
-  padding: ${getStatusBarHeight() + 19}px 24px 32px;
-  justify-content: flex-end;
+  justify-content: center;
+
+  padding: ${getStatusBarHeight() + 19}px 24px;
 `
 
 export const ButtonContainer = styled.View`
@@ -32,7 +33,8 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.background_secondary};
   font-size: ${RFValue(30)}px;
   font-family: ${({ theme }) => theme.fonts.secondary_600};
-  margin-top: 32px;
+
+  margin-top: ${RFValue(24)}px;
 `
 
 export const RentPeriod = styled.View`
@@ -41,7 +43,7 @@ export const RentPeriod = styled.View`
   align-items: center;
   justify-content: space-between;
 
-  margin: 32px 0px;
+  margin: ${RFValue(32)}px 0px;
 `
 
 export const DateInfo = styled.View`
@@ -58,7 +60,6 @@ export const DateValue = styled.Text<DateValueProps>`
   color: ${({ theme }) => theme.colors.background_secondary};
   font-family: ${({ theme }) => theme.fonts.primary_500};
   font-size: ${RFValue(15)}px;
-  line-height: ${RFValue(18)}px;
 
   ${({ selected }) =>
     !selected &&
@@ -71,7 +72,6 @@ export const DateValue = styled.Text<DateValueProps>`
 export const Content = styled.ScrollView.attrs({
   contentContainerStyle: {
     paddingHorizontal: 24,
-    alignItems: "center",
   },
   showsVerticalScrollIndicator: false,
 })``

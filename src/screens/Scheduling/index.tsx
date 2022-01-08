@@ -3,7 +3,21 @@ import React from "react"
 import { useTheme } from "styled-components"
 import { BackButton } from "../../components/BackButton"
 
-import { Container, Header, Title, ButtonContainer } from "./styles"
+import {
+  Container,
+  Header,
+  Title,
+  ButtonContainer,
+  RentPeriod,
+  DateInfo,
+  DateTitle,
+  DateValue,
+  Content,
+  Footer,
+} from "./styles"
+
+import Arrow from "../../assets/arrow.svg"
+import { Button } from "../../components/Button"
 
 export const Scheduling = () => {
   const theme = useTheme()
@@ -18,7 +32,26 @@ export const Scheduling = () => {
         <Title>
           Escolha uma{"\n"}data de início e{"\n"}fim do aluguel
         </Title>
+
+        <RentPeriod>
+          <DateInfo>
+            <DateTitle>DE</DateTitle>
+            <DateValue selected={false}></DateValue>
+          </DateInfo>
+          <Arrow />
+
+          <DateInfo>
+            <DateTitle>ATÉ</DateTitle>
+            <DateValue selected={false}></DateValue>
+          </DateInfo>
+        </RentPeriod>
       </Header>
+
+      <Content></Content>
+
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   )
 }

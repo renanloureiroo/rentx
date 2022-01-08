@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 
 import {
   Calendar as CustomCalendar,
@@ -82,6 +82,9 @@ export const Calendar = () => {
           marginHorizontal: -15,
         },
       }}
+      firstDay={1}
+      minDate={new Date().toLocaleDateString()}
+      onDayPress={(date) => console.log(date)}
     />
   )
 }

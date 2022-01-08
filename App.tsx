@@ -18,6 +18,7 @@ import {
 import theme from "./src/global/styles/theme"
 
 import { Scheduling } from "./src/screens/Scheduling"
+import { SchedulingDetails } from "./src/screens/SchedulingDetails"
 import { CardDetails } from "./src/screens/CardDetails"
 
 export default function App() {
@@ -35,7 +36,7 @@ export default function App() {
     return (
       <ThemeProvider theme={theme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Scheduling />
+          <SchedulingDetails />
         </GestureHandlerRootView>
       </ThemeProvider>
     )

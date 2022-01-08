@@ -129,10 +129,29 @@ export const CalendarIcon = styled.View`
   padding: 12px;
   background-color: ${({ theme }) => theme.colors.main};
 `
-export const PriceContainer = styled.View``
+export const PriceContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
+  margin: 16px 0px;
+  justify-content: space-between;
+`
 
-export const PriceTitle = styled.Text``
+export const PriceInfoContainer = styled.View``
 
-export const PriceInfo = styled.Text``
+export const PriceTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.text_detail};
+  font-family: ${({ theme }) => theme.fonts.secondary_500};
+  font-size: ${RFValue(10)}px;
+`
 
-export const PriceTotal = styled.Text``
+export const PriceInfo = styled.Text`
+  color: ${({ theme }) => theme.colors.title};
+  font-family: ${({ theme }) => theme.fonts.primary_500};
+  font-size: ${RFValue(15)}px;
+`
+
+export const PriceTotal = styled.Text`
+  color: ${({ theme }) => theme.colors.success};
+  font-family: ${({ theme }) => theme.fonts.secondary_500};
+  font-size: ${RFValue(24)}px;
+`

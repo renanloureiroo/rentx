@@ -25,6 +25,10 @@ import {
   DateValue,
   CalendarIcon,
   PriceContainer,
+  PriceTitle,
+  PriceInfoContainer,
+  PriceInfo,
+  PriceTotal,
 } from "./styles"
 
 import Speed from "../../assets/speed.svg"
@@ -93,7 +97,14 @@ export const SchedulingDetails = () => {
           </DateInfo>
         </RentPeriod>
 
-        <PriceContainer></PriceContainer>
+        <PriceContainer>
+          <PriceInfoContainer>
+            <PriceTitle>Total</PriceTitle>
+            <PriceInfo>R$580 x 3 diárias</PriceInfo>
+          </PriceInfoContainer>
+
+          <PriceTotal>R$ 2900</PriceTotal>
+        </PriceContainer>
       </Content>
 
       <Footer>

@@ -42,15 +42,8 @@ export const Subtitle = styled.Text`
   margin-top: 16px;
 `
 
-export const ButtonConfirm = styled(BorderlessButton)`
-  align-items: center;
+export const ButtonContainer = styled.View`
+  margin: 80px 0px ${getBottomSpace() + 46}px 0px;
   justify-content: center;
-  padding: 19px 25px;
-  background-color: ${({ theme }) => theme.colors.shape_dark};
-
-  margin: 80px 0px ${getBottomSpace() + 40}px 0px;
-`
-
-export const ButtonTitle = styled.Text`
-  color: ${({ theme }) => theme.colors.shape};
+  align-items: center;
 `

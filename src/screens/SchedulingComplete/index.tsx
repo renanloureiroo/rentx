@@ -1,20 +1,14 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
 
-import {
-  ButtonConfirm,
-  ButtonTitle,
-  Container,
-  Content,
-  Subtitle,
-  Title,
-} from "./styles"
+import { ButtonContainer, Container, Content, Subtitle, Title } from "./styles"
 
 import LogoBackground from "../../assets/logo_background_gray.svg"
 import Done from "../../assets/done.svg"
 import { RFValue } from "react-native-responsive-fontsize"
 
 import { useWindowDimensions } from "react-native"
+import { ConfirmButton } from "../../components/ConfirmButton"
 
 export const SchedulingComplete = () => {
   const { width } = useWindowDimensions()
@@ -32,9 +26,9 @@ export const SchedulingComplete = () => {
         </Subtitle>
       </Content>
 
-      <ButtonConfirm>
-        <ButtonTitle>OK</ButtonTitle>
-      </ButtonConfirm>
+      <ButtonContainer>
+        <ConfirmButton />
+      </ButtonContainer>
     </Container>
   )
 }

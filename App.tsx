@@ -1,4 +1,7 @@
+import "react-native-gesture-handler"
 import React from "react"
+import "intl"
+import "intl/locale-data/jsonp/pt-BR"
 
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { ThemeProvider } from "styled-components/native"
@@ -17,10 +20,9 @@ import {
 
 import theme from "./src/global/styles/theme"
 
-import { Scheduling } from "./src/screens/Scheduling"
-import { SchedulingDetails } from "./src/screens/SchedulingDetails"
-import { CardDetails } from "./src/screens/CardDetails"
-import { SchedulingComplete } from "./src/screens/SchedulingComplete"
+import { Routes } from "./src/routes"
+
+import { Home } from "./src/screens/Home"
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -37,7 +39,7 @@ export default function App() {
     return (
       <ThemeProvider theme={theme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <SchedulingComplete />
+          <Home />
         </GestureHandlerRootView>
       </ThemeProvider>
     )

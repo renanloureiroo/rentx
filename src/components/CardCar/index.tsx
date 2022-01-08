@@ -15,7 +15,6 @@ import {
 
 import Icon from "../../assets/energy.svg"
 import { RFValue } from "react-native-responsive-fontsize"
-import { useTheme } from "styled-components"
 
 interface CarData {
   brand: string
@@ -31,7 +30,6 @@ interface Props {
   data: CarData
 }
 export const CardCar = ({ data }: Props) => {
-  const theme = useTheme()
   return (
     <Container>
       <Details>

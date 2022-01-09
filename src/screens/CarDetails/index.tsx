@@ -32,6 +32,7 @@ import {
   NavigationProp,
   ParamListBase,
 } from "@react-navigation/native"
+import { StatusBar } from "expo-status-bar"
 
 export const CarDetails = () => {
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
@@ -45,6 +46,7 @@ export const CarDetails = () => {
   }
   return (
     <Container>
+      <StatusBar style="dark" backgroundColor="transparent" translucent />
       <Header>
         <BackButton onPress={handleGoBack} />
       </Header>

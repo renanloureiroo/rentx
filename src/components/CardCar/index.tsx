@@ -15,6 +15,7 @@ import {
 
 import Icon from "../../assets/energy.svg"
 import { RFValue } from "react-native-responsive-fontsize"
+import { RectButtonProps } from "react-native-gesture-handler"
 
 interface CarData {
   brand: string
@@ -26,12 +27,12 @@ interface CarData {
   thumbnail: string
 }
 
-interface Props {
+interface Props extends RectButtonProps {
   data: CarData
 }
-export const CardCar = ({ data }: Props) => {
+export const CardCar = ({ data, ...rest }: Props) => {
   return (
-    <Container>
+    <Container {...rest}>
       <Details>
         <Brand>{data.brand}</Brand>
         <Model>{data.model}</Model>

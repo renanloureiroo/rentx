@@ -22,8 +22,6 @@ import theme from "./src/global/styles/theme"
 
 import { Routes } from "./src/routes"
 
-import { Home } from "./src/screens/Home"
-
 export default function App() {
   const [fontsLoaded] = useFonts({
     Archivo_400Regular,
@@ -39,7 +37,7 @@ export default function App() {
     return (
       <ThemeProvider theme={theme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Home />
+          <Routes />
         </GestureHandlerRootView>
       </ThemeProvider>
     )

@@ -27,12 +27,26 @@ import Gasoline from "../../assets/gasoline.svg"
 import Exchange from "../../assets/exchange.svg"
 import People from "../../assets/people.svg"
 import { Button } from "../../components/Button"
+import {
+  useNavigation,
+  NavigationProp,
+  ParamListBase,
+} from "@react-navigation/native"
 
-export const CardDetails = () => {
+export const CarDetails = () => {
+  const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
+
+  const handleGoBack = () => {
+    goBack()
+  }
+
+  const handleScheduling = () => {
+    navigate("Scheduling")
+  }
   return (
     <Container>
       <Header>
-        <BackButton />
+        <BackButton onPress={handleGoBack} />
       </Header>
 
       <CarImages>
@@ -72,7 +86,10 @@ export const CardDetails = () => {
         </About>
       </Content>
       <Footer>
-        <Button title="Escolher período do aluguel" />
+        <Button
+          title="Escolher período do aluguel"
+          onPress={handleScheduling}
+        />
       </Footer>
     </Container>
   )

@@ -7,9 +7,9 @@ interface Props extends RectButtonProps {
   title: string
 }
 
-export const ConfirmButton = ({ title }: Props) => {
+export const ConfirmButton = ({ title, ...rest }: Props) => {
   return (
-    <Container>
+    <Container {...rest}>
       <Title>{title}</Title>
     </Container>
   )

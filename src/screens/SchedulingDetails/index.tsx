@@ -40,13 +40,27 @@ import People from "../../assets/people.svg"
 import { Button } from "../../components/Button"
 import { useTheme } from "styled-components"
 import { RFValue } from "react-native-responsive-fontsize"
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native"
 
 export const SchedulingDetails = () => {
+  const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
+
+  const handleGoBack = () => {
+    goBack()
+  }
+
+  const handleSchedulingComplete = () => {
+    navigate("SchedulingComplete")
+  }
   const theme = useTheme()
   return (
     <Container>
       <Header>
-        <BackButton />
+        <BackButton onPress={handleGoBack} />
       </Header>
 
       <CarImages>
@@ -113,7 +127,11 @@ export const SchedulingDetails = () => {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.colors.success} />
+        <Button
+          title="Alugar agora"
+          color={theme.colors.success}
+          onPress={handleSchedulingComplete}
+        />
       </Footer>
     </Container>
   )

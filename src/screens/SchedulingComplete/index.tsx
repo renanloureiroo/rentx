@@ -9,9 +9,20 @@ import { RFValue } from "react-native-responsive-fontsize"
 
 import { useWindowDimensions } from "react-native"
 import { ConfirmButton } from "../../components/ConfirmButton"
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native"
 
 export const SchedulingComplete = () => {
   const { width } = useWindowDimensions()
+
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation()
+
+  const handleHome = () => {
+    navigate("Home")
+  }
   return (
     <Container>
       <StatusBar style="light" translucent backgroundColor="transparent" />
@@ -27,7 +38,7 @@ export const SchedulingComplete = () => {
       </Content>
 
       <Footer>
-        <ConfirmButton title="OK" />
+        <ConfirmButton title="OK" onPress={handleHome} />
       </Footer>
     </Container>
   )

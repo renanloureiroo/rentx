@@ -19,15 +19,33 @@ import {
 import Arrow from "../../assets/arrow.svg"
 import { Button } from "../../components/Button"
 import { Calendar } from "../../components/Calendar"
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native"
 
 export const Scheduling = () => {
   const theme = useTheme()
+
+  const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
+
+  const handleGoBack = () => {
+    goBack()
+  }
+
+  const handleSchedulingDetails = () => {
+    navigate("SchedulingDetails")
+  }
   return (
     <Container>
       <StatusBar style="light" backgroundColor="transparent" translucent />
       <Header>
         <ButtonContainer>
-          <BackButton color={theme.colors.background_secondary} />
+          <BackButton
+            color={theme.colors.background_secondary}
+            onPress={handleGoBack}
+          />
         </ButtonContainer>
 
         <Title>
@@ -53,7 +71,7 @@ export const Scheduling = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleSchedulingDetails} />
       </Footer>
     </Container>
   )

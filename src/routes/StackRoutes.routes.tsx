@@ -2,18 +2,29 @@ import React from "react"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import { Home } from "../screens/Home"
-import { CardDetails } from "../screens/CardDetails"
+import { CarDetails } from "../screens/CarDetails"
 import { Scheduling } from "../screens/Scheduling"
 import { SchedulingDetails } from "../screens/SchedulingDetails"
 import { SchedulingComplete } from "../screens/SchedulingComplete"
 
+interface RootStackParamList {
+  Home: string
+  CarDetails: string
+  Scheduling: string
+  SchedulingDetails: string
+  SchedulingComplete: string
+}
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export const StackRoutes = () => {
   return (
-    <Navigator>
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Screen name="Home" component={Home} />
-      <Screen name="CardDetails" component={CardDetails} />
+      <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
       <Screen name="SchedulingComplete" component={SchedulingComplete} />

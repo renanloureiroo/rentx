@@ -1,3 +1,8 @@
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import React from "react"
 import { RFValue } from "react-native-responsive-fontsize"
@@ -20,6 +25,11 @@ const carDataTwo = {
 }
 
 export const Home = () => {
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation()
+
+  const handleCarDetails = () => {
+    navigate("CarDetails")
+  }
   return (
     <Container>
       <StatusBar style="light" backgroundColor="transparent" translucent />
@@ -33,7 +43,7 @@ export const Home = () => {
       <CarList
         data={[1, 2, 3, 4, 5, 6, 7]}
         keyExtractor={(item) => String(item)}
-        renderItem={() => <CardCar data={carData} />}
+        renderItem={() => <CardCar onPress={handleCarDetails} data={carData} />}
       />
     </Container>
   )

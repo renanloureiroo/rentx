@@ -1,15 +1,19 @@
+import React, { useEffect, useState } from "react"
 import {
   NavigationProp,
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
-import React, { useEffect } from "react"
 import { RFValue } from "react-native-responsive-fontsize"
-import Logo from "../../assets/logo.svg"
-import { CardCar } from "../../components/CardCar"
 
+import api from "../../services/api"
+
+import { CardCar } from "../../components/CardCar"
 import { Container, Header, TotalCars, ContentHeader, CarList } from "./styles"
+
+import Logo from "../../assets/logo.svg"
+
 const carData = {
   brand: "audi",
   model: "RS 5 Coupé",
@@ -25,11 +29,31 @@ const carDataTwo = {
 }
 
 export const Home = () => {
+  const [cars, setCars] = useState()
+
+  const [loading, setLoading] = useState<boolean>(true)
+
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
   const handleCarDetails = () => {
     navigate("CarDetails")
   }
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await api.get("/cars")
+
+        setCars(response.data)
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCars()
+  }, [])
 
   return (
     <Container>

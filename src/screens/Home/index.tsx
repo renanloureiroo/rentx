@@ -4,7 +4,7 @@ import {
   useNavigation,
 } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
-import React from "react"
+import React, { useEffect } from "react"
 import { RFValue } from "react-native-responsive-fontsize"
 import Logo from "../../assets/logo.svg"
 import { CardCar } from "../../components/CardCar"
@@ -30,6 +30,7 @@ export const Home = () => {
   const handleCarDetails = () => {
     navigate("CarDetails")
   }
+
   return (
     <Container>
       <StatusBar style="light" backgroundColor="transparent" translucent />

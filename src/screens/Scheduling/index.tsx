@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar"
-import React from "react"
+import React, { useState } from "react"
 import { useTheme } from "styled-components"
 import { BackButton } from "../../components/BackButton"
 
@@ -18,7 +18,12 @@ import {
 
 import Arrow from "../../assets/arrow.svg"
 import { Button } from "../../components/Button"
-import { Calendar } from "../../components/Calendar"
+import {
+  Calendar,
+  DayProps,
+  generateInterval,
+  MarkedDateProps,
+} from "../../components/Calendar"
 import {
   NavigationProp,
   ParamListBase,
@@ -26,6 +31,13 @@ import {
 } from "@react-navigation/native"
 
 export const Scheduling = () => {
+  const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
+    {} as DayProps
+  )
+
+  const [markedDate, setMarkedDate] = useState<MarkedDateProps>(
+    {} as MarkedDateProps
+  )
   const theme = useTheme()
 
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
@@ -36,6 +48,20 @@ export const Scheduling = () => {
 
   const handleSchedulingDetails = () => {
     navigate("SchedulingDetails")
+  }
+
+  const handleChangeDate = (date: DayProps) => {
+    let start = !lastSelectedDate.timestamp ? date : lastSelectedDate
+    let end = date
+
+    if (start.timestamp > end.timestamp) {
+      start = end
+      end = start
+    }
+    setLastSelectedDate(end)
+    const interval = generateInterval(start, end)
+
+    setMarkedDate(interval)
   }
   return (
     <Container>
@@ -67,7 +93,7 @@ export const Scheduling = () => {
       </Header>
 
       <Content>
-        <Calendar />
+        <Calendar onDayPress={handleChangeDate} markedDates={markedDate} />
       </Content>
 
       <Footer>

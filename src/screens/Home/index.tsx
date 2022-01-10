@@ -23,8 +23,8 @@ export const Home = () => {
 
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
-  const handleCarDetails = (id: string) => {
-    navigate("CarDetails", { carId: id })
+  const handleCarDetails = (car: CarDTO) => {
+    navigate("CarDetails", { car: car })
   }
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export const Home = () => {
           data={cars}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <CardCar onPress={() => handleCarDetails(item.id)} data={item} />
+            <CardCar onPress={() => handleCarDetails(item)} data={item} />
           )}
         />
       )}

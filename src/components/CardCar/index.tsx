@@ -17,10 +17,19 @@ import { RFValue } from "react-native-responsive-fontsize"
 import { RectButtonProps } from "react-native-gesture-handler"
 
 import EnergySvg from "../../assets/energy.svg"
+import GasolineSvg from "../../assets/gasoline.svg"
+import HybridSvg from "../../assets/hybrid.svg"
+
 import { CarDTO } from "../../dtos/CarDTO"
 
 interface Props extends RectButtonProps {
   data: CarDTO
+}
+
+const icons = {
+  electric_motor: EnergySvg,
+  gasoline_motor: GasolineSvg,
+  hybrid_motor: HybridSvg,
 }
 export const CardCar = ({ data, ...rest }: Props) => {
   return (

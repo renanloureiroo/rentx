@@ -13,29 +13,21 @@ import {
   Type,
 } from "./styles"
 
-import Icon from "../../assets/energy.svg"
 import { RFValue } from "react-native-responsive-fontsize"
 import { RectButtonProps } from "react-native-gesture-handler"
 
-interface CarData {
-  brand: string
-  model: string
-  rent: {
-    period: string
-    price: number
-  }
-  thumbnail: string
-}
+import EnergySvg from "../../assets/energy.svg"
+import { CarDTO } from "../../dtos/CarDTO"
 
 interface Props extends RectButtonProps {
-  data: CarData
+  data: CarDTO
 }
 export const CardCar = ({ data, ...rest }: Props) => {
   return (
     <Container {...rest}>
       <Details>
         <Brand>{data.brand}</Brand>
-        <Model>{data.model}</Model>
+        <Model>{data.name}</Model>
 
         <About>
           <Period>{data.rent.period}</Period>
@@ -44,11 +36,10 @@ export const CardCar = ({ data, ...rest }: Props) => {
               {Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRL",
-                notation: "compact",
               }).format(data.rent.price)}
             </Price>
             <Type>
-              <Icon width={RFValue(20)} height={RFValue(20)} />
+              <EnergySvg width={RFValue(20)} height={RFValue(20)} />
             </Type>
           </PriceContainer>
         </About>

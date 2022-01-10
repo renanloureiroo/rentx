@@ -16,22 +16,16 @@ import {
 import { RFValue } from "react-native-responsive-fontsize"
 import { RectButtonProps } from "react-native-gesture-handler"
 
-import EnergySvg from "../../assets/energy.svg"
-import GasolineSvg from "../../assets/gasoline.svg"
-import HybridSvg from "../../assets/hybrid.svg"
-
 import { CarDTO } from "../../dtos/CarDTO"
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
 
 interface Props extends RectButtonProps {
   data: CarDTO
 }
 
-const icons = {
-  electric_motor: EnergySvg,
-  gasoline_motor: GasolineSvg,
-  hybrid_motor: HybridSvg,
-}
 export const CardCar = ({ data, ...rest }: Props) => {
+  const Icon = getAccessoryIcon(data.fuel_type)
+
   return (
     <Container {...rest}>
       <Details>
@@ -48,7 +42,7 @@ export const CardCar = ({ data, ...rest }: Props) => {
               }).format(data.rent.price)}
             </Price>
             <Type>
-              <EnergySvg width={RFValue(20)} height={RFValue(20)} />
+              <Icon width={RFValue(20)} height={RFValue(20)} />
             </Type>
           </PriceContainer>
         </About>

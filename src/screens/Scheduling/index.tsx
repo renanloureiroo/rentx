@@ -31,6 +31,7 @@ import {
 } from "@react-navigation/native"
 import { format, parseISO } from "date-fns"
 import { getPlatformDate } from "../../utils/getPlatformDate"
+import { Alert } from "react-native"
 
 interface RentalPeriod {
   start: number
@@ -59,6 +60,11 @@ export const Scheduling = () => {
   }
 
   const handleSchedulingDetails = () => {
+    if (!rentalPeriod.start || !rentalPeriod.end) {
+      return Alert.alert(
+        "É preciso selecionar o período de aluguel do veículo!"
+      )
+    }
     navigate("SchedulingDetails")
   }
 

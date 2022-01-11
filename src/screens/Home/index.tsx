@@ -37,6 +37,10 @@ export const Home = () => {
     navigate("CarDetails", { car: car })
   }
 
+  const handleMyCars = () => {
+    navigate("MyCars")
+  }
+
   useEffect(() => {
     const fetchCars = async () => {
       try {
@@ -75,7 +79,7 @@ export const Home = () => {
         />
       )}
 
-      <MyCarsButton>
+      <MyCarsButton onPress={handleMyCars}>
         <Ionicons name="car-sport" size={32} color={theme.colors.shape} />
       </MyCarsButton>
     </Container>

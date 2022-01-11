@@ -78,6 +78,12 @@ export const SchedulingDetails = () => {
         ...dates,
       ]
 
+      await api.post("/schedules_byuser", {
+        user_id: 1,
+        car: car,
+        period: period,
+      })
+
       const response = await api.put(`/schedules_bycars/${car.id}`, {
         id: car.id,
         unavailable_dates,

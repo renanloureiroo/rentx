@@ -47,16 +47,25 @@ import {
   useRoute,
 } from "@react-navigation/native"
 import { CarDTO } from "../../dtos/CarDTO"
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
 
 interface Params {
   car: CarDTO
+  dates: string[]
+  period: {
+    start: number
+    startFormatted: string
+    end: number
+    endFormatted: string
+  }
 }
 
 export const SchedulingDetails = () => {
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
 
   const { params } = useRoute()
-  const { car } = params as Params
+  const { car, dates, period } = params as Params
+  const total = car.rent.price * dates.length
 
   const handleGoBack = () => {
     goBack()
@@ -73,33 +82,30 @@ export const SchedulingDetails = () => {
       </Header>
 
       <CarImages>
-        <ImageSlider
-          imagesUrl={[
-            "https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png",
-          ]}
-        />
+        <ImageSlider imagesUrl={car.photos} />
       </CarImages>
 
       <Content>
         <Details>
           <Description>
-            <Brand>Lamburguini</Brand>
-            <Name>Huracan</Name>
+            <Brand>{car.brand}</Brand>
+            <Name>{car.name}</Name>
           </Description>
 
           <Rent>
-            <Period>ao dia</Period>
-            <Price>R$ 580</Price>
+            <Period>{car.rent.period}</Period>
+            <Price>R$ {car.rent.price}</Price>
           </Rent>
         </Details>
 
         <Accessories>
-          <Accessory name="380km/h" icon={Speed} />
-          <Accessory name="3.2s" icon={Acceleration} />
-          <Accessory name="800 HP" icon={Force} />
-          <Accessory name="Gasolina" icon={Gasoline} />
-          <Accessory name="Auto" icon={Exchange} />
-          <Accessory name="2 pessoas" icon={People} />
+          {car.accessories.map((item) => (
+            <Accessory
+              key={item.type}
+              name={item.name}
+              icon={getAccessoryIcon(item.type)}
+            />
+          ))}
         </Accessories>
 
         <RentPeriod>
@@ -112,7 +118,7 @@ export const SchedulingDetails = () => {
           </CalendarIcon>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue>08/01/2022</DateValue>
+            <DateValue>{period.startFormatted}</DateValue>
           </DateInfo>
           <Feather
             name="chevron-right"
@@ -121,17 +127,19 @@ export const SchedulingDetails = () => {
           />
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
-            <DateValue>10/01/2022</DateValue>
+            <DateValue>{period.endFormatted}</DateValue>
           </DateInfo>
         </RentPeriod>
 
         <PriceContainer>
           <PriceInfoContainer>
             <PriceTitle>Total</PriceTitle>
-            <PriceInfo>R$580 x 3 diárias</PriceInfo>
+            <PriceInfo>
+              R${car.rent.price} x {dates.length} diárias
+            </PriceInfo>
           </PriceInfoContainer>
 
-          <PriceTotal>R$ 2900</PriceTotal>
+          <PriceTotal>R$ {total}</PriceTotal>
         </PriceContainer>
       </Content>
 

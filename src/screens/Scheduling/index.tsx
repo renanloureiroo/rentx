@@ -73,7 +73,11 @@ export const Scheduling = () => {
         "É preciso selecionar o período de aluguel do veículo!"
       )
     }
-    navigate("SchedulingDetails", { car, dates: Object.keys(markedDate) })
+    navigate("SchedulingDetails", {
+      car,
+      dates: Object.keys(markedDate),
+      period: rentalPeriod,
+    })
   }
 
   const handleChangeDate = (date: DayProps) => {

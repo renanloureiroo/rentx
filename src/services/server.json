@@ -320,7 +320,14 @@
         "2021-05-29",
         "2021-05-30",
         "2021-05-29",
-        "2021-05-30"
+        "2021-05-30",
+        "2022-01-24",
+        "2022-01-25",
+        "2022-01-26",
+        "2022-01-27",
+        "2022-01-28",
+        "2022-01-29",
+        "2022-01-30"
       ]
     },
     {
@@ -349,7 +356,11 @@
         "2022-01-27",
         "2022-01-28",
         "2022-01-29",
-        "2022-01-30"
+        "2022-01-30",
+        "2022-01-13",
+        "2022-01-14",
+        "2022-01-15",
+        "2022-01-16"
       ]
     },
     {
@@ -378,24 +389,24 @@
     {
       "user_id": 1,
       "car": {
-        "id": "535e8de8-721b-4bac-8b72-7d29be7da467",
-        "brand": "Audi",
-        "name": "RS 5 Coupé",
-        "about": "O carro ainda tem sistema de tração nas quatro rodas Quattro com diferencial traseiro esportivo de série. De acordo com a Audi, ele faz o mesmo em 3,8 segundos na Sportback.",
+        "id": "49983f6c-a46a-4dfd-a86e-425b8c72e086",
+        "brand": "Lamborghini",
+        "name": "Huracan",
+        "about": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.",
         "rent": {
           "period": "Ao dia",
           "price": 120
         },
         "fuel_type": "electric_motor",
-        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/1.png",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/4.png",
         "accessories": [
           {
             "type": "speed",
-            "name": "250km/h"
+            "name": "380km/h"
           },
           {
             "type": "acceleration",
-            "name": "3.8s"
+            "name": "3.2s"
           },
           {
             "type": "turning_diameter",
@@ -411,52 +422,52 @@
           },
           {
             "type": "seats",
-            "name": "5 pessoas"
+            "name": "2 pessoas"
           }
         ],
         "photos": [
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/1.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/2.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/3.png"
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/9.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/10.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/11.png"
         ]
       },
       "period": {
-        "start": 1642550400000,
-        "end": 1642896000000,
-        "startFormatted": "19/01/2022",
-        "endFormatted": "23/01/2022"
+        "start": 1642032000000,
+        "end": 1642291200000,
+        "startFormatted": "13/01/2022",
+        "endFormatted": "16/01/2022"
       },
       "id": 1
     },
     {
       "user_id": 1,
       "car": {
-        "id": "49983f6c-a46a-4dfd-a86e-425b8c72e086",
-        "brand": "Lamborghini",
-        "name": "Huracan",
-        "about": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.",
+        "id": "ffb71f55-818a-48b1-b7d2-2efc406ede25",
+        "brand": "Porsche",
+        "name": "Panamera",
+        "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
         "rent": {
           "period": "Ao dia",
-          "price": 120
+          "price": 340
         },
-        "fuel_type": "electric_motor",
-        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/4.png",
+        "fuel_type": "gasoline_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
         "accessories": [
           {
             "type": "speed",
-            "name": "380km/h"
+            "name": "315km/h"
           },
           {
             "type": "acceleration",
-            "name": "3.2s"
+            "name": "2.9s"
           },
           {
             "type": "turning_diameter",
-            "name": "800 HP"
+            "name": "700 HP"
           },
           {
-            "type": "electric_motor",
-            "name": "Elétrico"
+            "type": "gasoline_motor",
+            "name": "Gasoline"
           },
           {
             "type": "exchange",
@@ -464,75 +475,21 @@
           },
           {
             "type": "seats",
-            "name": "2 pessoas"
+            "name": "4 pessoas"
           }
         ],
         "photos": [
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/9.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/10.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/11.png"
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/4.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/5.png"
         ]
       },
       "period": {
-        "start": 1643241600000,
+        "start": 1642982400000,
         "end": 1643500800000,
-        "startFormatted": "27/01/2022",
+        "startFormatted": "24/01/2022",
         "endFormatted": "30/01/2022"
       },
       "id": 2
-    },
-    {
-      "user_id": 1,
-      "car": {
-        "id": "49983f6c-a46a-4dfd-a86e-425b8c72e086",
-        "brand": "Lamborghini",
-        "name": "Huracan",
-        "about": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.",
-        "rent": {
-          "period": "Ao dia",
-          "price": 120
-        },
-        "fuel_type": "electric_motor",
-        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/4.png",
-        "accessories": [
-          {
-            "type": "speed",
-            "name": "380km/h"
-          },
-          {
-            "type": "acceleration",
-            "name": "3.2s"
-          },
-          {
-            "type": "turning_diameter",
-            "name": "800 HP"
-          },
-          {
-            "type": "electric_motor",
-            "name": "Elétrico"
-          },
-          {
-            "type": "exchange",
-            "name": "Auto"
-          },
-          {
-            "type": "seats",
-            "name": "2 pessoas"
-          }
-        ],
-        "photos": [
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/9.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/10.png",
-          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/11.png"
-        ]
-      },
-      "period": {
-        "start": 1643241600000,
-        "end": 1643500800000,
-        "startFormatted": "27/01/2022",
-        "endFormatted": "30/01/2022"
-      },
-      "id": 3
     }
   ]
 }

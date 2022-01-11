@@ -24,12 +24,11 @@ interface Props {
 }
 
 export const MyCarCard = ({ data }: Props) => {
-  const Icon = getAccessoryIcon(data.car.fuel_type)
   const theme = useTheme()
 
   return (
     <Container>
-      <CardCar data={data.car} />
+      <CardCar data={data.car} enabled={false} />
 
       <Footer>
         <Period>PERÍODO</Period>

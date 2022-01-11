@@ -6,15 +6,24 @@ import {
 } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { RFValue } from "react-native-responsive-fontsize"
+import { Ionicons } from "@expo/vector-icons"
 
 import api from "../../services/api"
 import { CarDTO } from "../../dtos/CarDTO"
 
 import { CardCar } from "../../components/CardCar"
-import { Container, Header, TotalCars, ContentHeader, CarList } from "./styles"
+import {
+  Container,
+  Header,
+  TotalCars,
+  ContentHeader,
+  CarList,
+  MyCarsButton,
+} from "./styles"
 
 import Logo from "../../assets/logo.svg"
 import { Load } from "../../components/Load"
+import { useTheme } from "styled-components"
 
 export const Home = () => {
   const [cars, setCars] = useState<CarDTO[]>([])
@@ -23,6 +32,7 @@ export const Home = () => {
 
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
+  const theme = useTheme()
   const handleCarDetails = (car: CarDTO) => {
     navigate("CarDetails", { car: car })
   }
@@ -64,6 +74,10 @@ export const Home = () => {
           )}
         />
       )}
+
+      <MyCarsButton>
+        <Ionicons name="car-sport" size={32} color={theme.colors.shape} />
+      </MyCarsButton>
     </Container>
   )
 }

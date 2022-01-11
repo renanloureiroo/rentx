@@ -7,13 +7,6 @@ import { Scheduling } from "../screens/Scheduling"
 import { SchedulingDetails } from "../screens/SchedulingDetails"
 import { SchedulingComplete } from "../screens/SchedulingComplete"
 
-interface RootStackParamList {
-  Home: string
-  CarDetails: string
-  Scheduling: string
-  SchedulingDetails: string
-  SchedulingComplete: string
-}
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export const StackRoutes = () => {

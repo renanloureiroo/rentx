@@ -31,12 +31,6 @@ import {
   PriceTotal,
 } from "./styles"
 
-import Speed from "../../assets/speed.svg"
-import Acceleration from "../../assets/acceleration.svg"
-import Force from "../../assets/force.svg"
-import Gasoline from "../../assets/gasoline.svg"
-import Exchange from "../../assets/exchange.svg"
-import People from "../../assets/people.svg"
 import { Button } from "../../components/Button"
 import { useTheme } from "styled-components"
 import { RFValue } from "react-native-responsive-fontsize"
@@ -48,6 +42,9 @@ import {
 } from "@react-navigation/native"
 import { CarDTO } from "../../dtos/CarDTO"
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
+import { StatusBar } from "expo-status-bar"
+import api from "../../services/api"
+import { Alert } from "react-native"
 
 interface Params {
   car: CarDTO
@@ -71,12 +68,32 @@ export const SchedulingDetails = () => {
     goBack()
   }
 
-  const handleSchedulingComplete = () => {
-    navigate("SchedulingComplete")
+  const handleSchedulingComplete = async () => {
+    try {
+      const schedulingByCar = await api.get(`/schedules_bycars/${car.id}`)
+      console.log(schedulingByCar)
+
+      const unavailable_dates = [
+        ...schedulingByCar.data.unavailable_dates,
+        ...dates,
+      ]
+
+      const response = await api.put(`/schedules_bycars/${car.id}`, {
+        id: car.id,
+        unavailable_dates,
+      })
+      if (response.status !== 200) {
+        throw new Error("bad request")
+      }
+      navigate("SchedulingComplete")
+    } catch (err) {
+      Alert.alert("Não foi possível confirmar o agendamento.")
+    }
   }
   const theme = useTheme()
   return (
     <Container>
+      <StatusBar style="dark" backgroundColor="transparent" translucent />
       <Header>
         <BackButton onPress={handleGoBack} />
       </Header>

@@ -5,7 +5,6 @@ import { Footer, Container, Content, Subtitle, Title } from "./styles"
 
 import LogoBackground from "../../assets/logo_background_gray.svg"
 import Done from "../../assets/done.svg"
-import { RFValue } from "react-native-responsive-fontsize"
 
 import { useWindowDimensions } from "react-native"
 import { ConfirmButton } from "../../components/ConfirmButton"

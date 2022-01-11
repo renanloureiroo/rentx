@@ -19,16 +19,12 @@ export const Container = styled.View`
 export const Content = styled.View`
   justify-content: center;
   align-items: center;
-
-  margin-top: ${RFValue(21)}px;
 `
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_600};
   font-size: ${RFValue(30)}px;
   color: ${({ theme }) => theme.colors.shape};
-
-  margin-top: 40px;
 `
 
 export const Subtitle = styled.Text`
@@ -43,7 +39,7 @@ export const Subtitle = styled.Text`
 `
 
 export const Footer = styled.View`
-  margin: 80px 0px ${getBottomSpace() + 46}px 0px;
+  margin: ${getBottomSpace() + 46}px;
   justify-content: center;
   align-items: center;
 `

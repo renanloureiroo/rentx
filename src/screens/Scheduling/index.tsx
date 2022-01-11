@@ -29,10 +29,22 @@ import {
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native"
+import { format, parseISO } from "date-fns"
+import { getPlatformDate } from "../../utils/getPlatformDate"
+
+interface RentalPeriod {
+  start: number
+  startFormatted: string
+  end: number
+  endFormatted: string
+}
 
 export const Scheduling = () => {
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
     {} as DayProps
+  )
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>(
+    {} as RentalPeriod
   )
 
   const [markedDate, setMarkedDate] = useState<MarkedDateProps>(
@@ -59,9 +71,25 @@ export const Scheduling = () => {
       end = start
     }
     setLastSelectedDate(end)
+
     const interval = generateInterval(start, end)
 
     setMarkedDate(interval)
+
+    const firstDate = Object.keys(interval)[0]
+    const lastDate = Object.keys(interval)[Object.keys(interval).length - 1]
+
+    const rentalDates: RentalPeriod = {
+      start: start.timestamp,
+      end: end.timestamp,
+      startFormatted: format(
+        getPlatformDate(parseISO(firstDate)),
+        "dd/MM/yyyy"
+      ),
+      endFormatted: format(getPlatformDate(parseISO(lastDate)), "dd/MM/yyyy"),
+    }
+
+    setRentalPeriod(rentalDates)
   }
   return (
     <Container>
@@ -81,13 +109,17 @@ export const Scheduling = () => {
         <RentPeriod>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue selected={false}></DateValue>
+            <DateValue selected={!!rentalPeriod.startFormatted}>
+              {rentalPeriod.startFormatted}
+            </DateValue>
           </DateInfo>
           <Arrow />
 
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
-            <DateValue selected={false}></DateValue>
+            <DateValue selected={!!rentalPeriod.endFormatted}>
+              {rentalPeriod.endFormatted}
+            </DateValue>
           </DateInfo>
         </RentPeriod>
       </Header>

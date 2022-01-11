@@ -47,7 +47,7 @@ export const CarDetails = () => {
   }
 
   const handleScheduling = () => {
-    navigate("Scheduling")
+    navigate("Scheduling", { car: car })
   }
   return (
     <Container>

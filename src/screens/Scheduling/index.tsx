@@ -28,16 +28,21 @@ import {
   NavigationProp,
   ParamListBase,
   useNavigation,
+  useRoute,
 } from "@react-navigation/native"
 import { format, parseISO } from "date-fns"
 import { getPlatformDate } from "../../utils/getPlatformDate"
 import { Alert } from "react-native"
+import { CarDTO } from "../../dtos/CarDTO"
 
 interface RentalPeriod {
   start: number
   startFormatted: string
   end: number
   endFormatted: string
+}
+interface Params {
+  car: CarDTO
 }
 
 export const Scheduling = () => {
@@ -55,6 +60,9 @@ export const Scheduling = () => {
 
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
 
+  const { params } = useRoute()
+  const { car } = params as Params
+
   const handleGoBack = () => {
     goBack()
   }
@@ -65,7 +73,7 @@ export const Scheduling = () => {
         "É preciso selecionar o período de aluguel do veículo!"
       )
     }
-    navigate("SchedulingDetails")
+    navigate("SchedulingDetails", { car, dates: Object.keys(markedDate) })
   }
 
   const handleChangeDate = (date: DayProps) => {

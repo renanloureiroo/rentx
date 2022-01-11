@@ -44,10 +44,19 @@ import {
   NavigationProp,
   ParamListBase,
   useNavigation,
+  useRoute,
 } from "@react-navigation/native"
+import { CarDTO } from "../../dtos/CarDTO"
+
+interface Params {
+  car: CarDTO
+}
 
 export const SchedulingDetails = () => {
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
+
+  const { params } = useRoute()
+  const { car } = params as Params
 
   const handleGoBack = () => {
     goBack()

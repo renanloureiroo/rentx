@@ -147,7 +147,11 @@ export const Scheduling = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" onPress={handleSchedulingDetails} />
+        <Button
+          title="Confirmar"
+          onPress={handleSchedulingDetails}
+          enabled={!!rentalPeriod.endFormatted}
+        />
       </Footer>
     </Container>
   )

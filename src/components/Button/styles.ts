@@ -10,6 +10,7 @@ export const Container = styled(RectButton)<Props>`
   width: 100%;
   padding: 16px;
   background: ${({ theme, color }) => (color ? color : theme.colors.main)};
+  opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
   justify-content: center;
   align-items: center;
 `

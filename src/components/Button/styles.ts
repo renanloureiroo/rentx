@@ -4,13 +4,15 @@ import styled from "styled-components/native"
 
 interface Props extends RectButtonProps {
   color?: string
+  loading: boolean
 }
 
 export const Container = styled(RectButton)<Props>`
   width: 100%;
   padding: 16px;
   background: ${({ theme, color }) => (color ? color : theme.colors.main)};
-  opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
+  opacity: ${({ enabled, loading }) =>
+    enabled === false || loading == true ? 0.5 : 1};
   justify-content: center;
   align-items: center;
 `

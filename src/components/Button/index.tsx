@@ -20,7 +20,7 @@ export const Button = ({
 }: Props) => {
   const theme = useTheme()
   return (
-    <Container color={color} {...rest} enabled={enabled}>
+    <Container color={color} {...rest} enabled={enabled} loading={loading}>
       {loading ? (
         <ActivityIndicator size="large" color={theme.colors.shape} />
       ) : (

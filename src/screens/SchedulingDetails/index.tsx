@@ -175,6 +175,7 @@ export const SchedulingDetails = () => {
           color={theme.colors.success}
           onPress={handleSchedulingComplete}
           loading={loading}
+          enabled={!loading}
         />
       </Footer>
     </Container>

@@ -1,4 +1,4 @@
-import { NavigationProp, useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import React, { useEffect, useState } from "react"
 import { ActivityIndicator } from "react-native"
 import { useTheme } from "styled-components"

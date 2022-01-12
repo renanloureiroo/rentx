@@ -1,9 +1,8 @@
 import React, { useEffect } from "react"
 
-import { Ionicons } from "@expo/vector-icons"
-import { RFValue } from "react-native-responsive-fontsize"
+import { AntDesign } from "@expo/vector-icons"
+
 import { CarDTO } from "../../dtos/CarDTO"
-import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
 
 import { Container, Footer, Period, PeriodSchedule, Date } from "./styles"
 import { useTheme } from "styled-components"
@@ -35,8 +34,8 @@ export const MyCarCard = ({ data }: Props) => {
 
         <PeriodSchedule>
           <Date>{data.period.startFormatted}</Date>
-          <Ionicons
-            name="ios-arrow-forward"
+          <AntDesign
+            name="arrowright"
             size={14}
             color={theme.colors.text_detail}
           />

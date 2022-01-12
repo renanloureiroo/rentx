@@ -63,7 +63,7 @@ export const Home = () => {
       <Header>
         <ContentHeader>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <TotalCars>Total de carros 12</TotalCars>
+          <TotalCars>Total de carros {cars.length}</TotalCars>
         </ContentHeader>
       </Header>
 

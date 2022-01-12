@@ -68,7 +68,7 @@ export const CarDetails = () => {
           </Description>
 
           <Rent>
-            <Period>a{car.rent.period}</Period>
+            <Period>{car.rent.period}</Period>
             <Price>
               {Intl.NumberFormat("pt-BR", {
                 style: "currency",

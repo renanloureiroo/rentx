@@ -7,6 +7,7 @@ interface ImageIndexProps {
 
 export const Container = styled.View`
   width: 100%;
+  height: 132px;
 `
 
 export const ImageIndexes = styled.View`
@@ -26,6 +27,7 @@ export const ImageIndex = styled.View<ImageIndexProps>`
 `
 export const CardWrapper = styled.View`
   width: ${Dimensions.get("window").width}px;
+  height: 132px;
 
   align-items: center;
   justify-content: center;

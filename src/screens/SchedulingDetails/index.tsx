@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState } from "react"
+
 import { Accessory } from "../../components/Accessory"
 import { BackButton } from "../../components/BackButton"
 import { ImageSlider } from "../../components/ImageSlider"
@@ -58,6 +59,7 @@ interface Params {
 }
 
 export const SchedulingDetails = () => {
+  const [loading, setLoading] = useState<boolean>(false)
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
 
   const { params } = useRoute()
@@ -69,6 +71,7 @@ export const SchedulingDetails = () => {
   }
 
   const handleSchedulingComplete = async () => {
+    setLoading(true)
     try {
       const schedulingByCar = await api.get(`/schedules_bycars/${car.id}`)
       console.log(schedulingByCar)
@@ -171,6 +174,7 @@ export const SchedulingDetails = () => {
           title="Alugar agora"
           color={theme.colors.success}
           onPress={handleSchedulingComplete}
+          loading={loading}
         />
       </Footer>
     </Container>

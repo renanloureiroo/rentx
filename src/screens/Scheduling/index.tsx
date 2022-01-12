@@ -68,11 +68,6 @@ export const Scheduling = () => {
   }
 
   const handleSchedulingDetails = () => {
-    if (!rentalPeriod.start || !rentalPeriod.end) {
-      return Alert.alert(
-        "É preciso selecionar o período de aluguel do veículo!"
-      )
-    }
     navigate("SchedulingDetails", {
       car,
       dates: Object.keys(markedDate),

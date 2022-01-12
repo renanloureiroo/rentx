@@ -19,7 +19,7 @@ export const Header = styled.View`
   height: ${RFValue(325)}px;
   background: ${({ theme }) => theme.colors.header};
 
-  justify-content: center;
+  justify-content: flex-start;
 
   padding: ${getStatusBarHeight() + 19}px 24px;
 `

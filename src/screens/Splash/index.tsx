@@ -10,12 +10,20 @@ import Animated, {
   interpolate,
   withTiming,
   Extrapolate,
+  runOnJS,
 } from "react-native-reanimated"
 
 import { Container } from "./styles"
+import {
+  useNavigation,
+  NavigationProp,
+  ParamListBase,
+} from "@react-navigation/native"
 
 export const Splash = () => {
   const splashAnimated = useSharedValue(0)
+
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
   const brandStyle = useAnimatedStyle(() => {
     return {
@@ -49,10 +57,20 @@ export const Splash = () => {
     }
   })
 
+  const startApp = () => {
+    navigate("Home")
+  }
   useEffect(() => {
-    splashAnimated.value = withTiming(50, {
-      duration: 2000,
-    })
+    splashAnimated.value = withTiming(
+      50,
+      {
+        duration: 2000,
+      },
+      () => {
+        "worklet"
+        runOnJS(startApp)()
+      }
+    )
   })
 
   return (

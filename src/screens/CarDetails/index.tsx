@@ -3,11 +3,17 @@ import { Accessory } from "../../components/Accessory"
 import { BackButton } from "../../components/BackButton"
 import { ImageSlider } from "../../components/ImageSlider"
 
+import Animated, {
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated"
+
 import {
   Container,
   Header,
   CarImages,
-  Content,
   Details,
   Description,
   Brand,
@@ -40,7 +46,20 @@ export const CarDetails = () => {
 
   const route = useRoute()
 
+  const scrollY = useSharedValue(0)
+
   const { car } = route.params as Params
+
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    scrollY.value = event.contentOffset.y
+    console.log(event.contentOffset.y)
+  })
+
+  const headerStyle = useAnimatedStyle(() => {
+    return {
+      height: interpolate();
+    }
+  })
 
   const handleGoBack = () => {
     goBack()
@@ -60,7 +79,14 @@ export const CarDetails = () => {
         <ImageSlider imagesUrl={car.photos} />
       </CarImages>
 
-      <Content>
+      <Animated.ScrollView
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          alignItems: "center",
+        }}
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+      >
         <Details>
           <Description>
             <Brand>{car.brand}</Brand>
@@ -88,8 +114,13 @@ export const CarDetails = () => {
           ))}
         </Accessories>
 
-        <About>{car.about}</About>
-      </Content>
+        <About>
+          {car.about} {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+        </About>
+      </Animated.ScrollView>
       <Footer>
         <Button
           title="Escolher período do aluguel"

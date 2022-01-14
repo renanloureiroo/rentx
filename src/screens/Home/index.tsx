@@ -103,7 +103,7 @@ export const Home = () => {
       <Header>
         <ContentHeader>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <TotalCars>Total de carros {cars.length}</TotalCars>
+          {!loading && <TotalCars>Total de carros {cars.length}</TotalCars>}
         </ContentHeader>
       </Header>
 

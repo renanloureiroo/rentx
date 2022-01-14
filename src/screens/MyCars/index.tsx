@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { ActivityIndicator } from "react-native"
 import { useTheme } from "styled-components"
 import { BackButton } from "../../components/BackButton"
+import { LoadAnimation } from "../../components/LoadAnimation"
 import { MyCarCard } from "../../components/MyCarCard"
 import { CarDTO } from "../../dtos/CarDTO"
 import api from "../../services/api"
@@ -74,9 +75,7 @@ export const MyCars = () => {
           <Contador>{cars.length}</Contador>
         </ListTitleContainer>
         {loading ? (
-          <Loading>
-            <ActivityIndicator size="large" color={theme.colors.main} />
-          </Loading>
+          <LoadAnimation />
         ) : (
           <MyCarsList
             data={cars}

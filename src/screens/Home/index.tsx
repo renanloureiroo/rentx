@@ -26,6 +26,7 @@ import Animated, {
   useAnimatedGestureHandler,
 } from "react-native-reanimated"
 import { BackHandler, StyleSheet } from "react-native"
+import { LoadAnimation } from "../../components/LoadAnimation"
 
 export const Home = () => {
   const [cars, setCars] = useState<CarDTO[]>([])
@@ -95,7 +96,7 @@ export const Home = () => {
     BackHandler.addEventListener("hardwareBackPress", () => {
       return true
     })
-  }, [])
+  })
 
   return (
     <Container>
@@ -108,7 +109,7 @@ export const Home = () => {
       </Header>
 
       {loading ? (
-        <Load />
+        <LoadAnimation />
       ) : (
         <CarList
           data={cars}

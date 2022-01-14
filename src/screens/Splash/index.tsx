@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { Button, StyleSheet, useWindowDimensions } from "react-native"
 
 import BrandSvg from "../../assets/brand.svg"
 import LogoSvg from "../../assets/logo.svg"

@@ -114,8 +114,12 @@ export const Home = () => {
         <CarList
           data={cars}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <CardCar onPress={() => handleCarDetails(item)} data={item} />
+          renderItem={({ item, index }) => (
+            <CardCar
+              onPress={() => handleCarDetails(item)}
+              data={item}
+              duration={1000 + index * 100}
+            />
           )}
         />
       )}

@@ -7,6 +7,10 @@ interface Props extends RectButtonProps {
   loading: boolean
 }
 
+interface TextProps {
+  light: boolean
+}
+
 export const Container = styled(RectButton)<Props>`
   width: 100%;
   padding: 16px;
@@ -15,10 +19,13 @@ export const Container = styled(RectButton)<Props>`
     enabled === false || loading == true ? 0.5 : 1};
   justify-content: center;
   align-items: center;
+
+  margin-bottom: 8px;
 `
 
-export const Title = styled.Text`
+export const Title = styled.Text<TextProps>`
   font-family: ${({ theme }) => theme.fonts.primary_500};
-  color: ${({ theme }) => theme.colors.background_secondary};
+  color: ${({ theme, light }) =>
+    light ? theme.colors.title : theme.colors.shape};
   font-size: ${RFValue(15)}px;
 `

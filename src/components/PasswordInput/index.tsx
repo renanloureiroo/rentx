@@ -9,8 +9,9 @@ interface Props extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>["name"]
 }
 
-export const PasswordInput = ({ iconName, ...rest }: Props) => {
+export const PasswordInput = ({ iconName, value, ...rest }: Props) => {
   const [isVisible, setIsVisible] = useState<Boolean>(false)
+  const [isFocused, setIsFocused] = useState<boolean>(false)
 
   const theme = useTheme()
 
@@ -19,18 +20,26 @@ export const PasswordInput = ({ iconName, ...rest }: Props) => {
   }
   return (
     <Container>
-      <IconContainer>
-        <Feather name={iconName} size={24} color={theme.colors.text_detail} />
+      <IconContainer isFocus={isFocused}>
+        <Feather
+          name={iconName}
+          size={24}
+          color={!!value ? theme.colors.main : theme.colors.text_detail}
+        />
       </IconContainer>
 
       <InputText
+        isFocus={isFocused}
+        value={value}
         {...rest}
         placeholderTextColor={theme.colors.text_detail}
         secureTextEntry={!isVisible}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
 
       <BorderlessButton onPress={handleVisiblePassword} borderless={false}>
-        <IconContainer>
+        <IconContainer isFocus={isFocused}>
           <Feather
             name={isVisible ? "eye" : "eye-off"}
             size={24}

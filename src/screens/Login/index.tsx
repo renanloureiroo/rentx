@@ -3,8 +3,10 @@ import React from "react"
 import { Text } from "react-native"
 import { useTheme } from "styled-components"
 import { Button } from "../../components/Button"
+import { Input } from "../../components/Input"
+import { PasswordInput } from "../../components/PasswordInput"
 
-import { Container, Title, Subtitle, Header, Footer } from "./styles"
+import { Container, Title, Subtitle, Header, Footer, Form } from "./styles"
 
 export const Login = () => {
   const theme = useTheme()
@@ -17,6 +19,16 @@ export const Login = () => {
           Faça seu login para começar{"\n"}uma experiência incrível.
         </Subtitle>
       </Header>
+      <Form>
+        <Input
+          iconName="mail"
+          placeholder="E-mail"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
+        <PasswordInput iconName="lock" placeholder="Senha" />
+      </Form>
 
       <Footer>
         <Button

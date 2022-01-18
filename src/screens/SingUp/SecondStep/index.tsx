@@ -6,6 +6,7 @@ import {
 import React, { useState } from "react"
 import { Keyboard, KeyboardAvoidingView } from "react-native"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
+import { useTheme } from "styled-components"
 
 import * as Yup from "yup"
 
@@ -30,6 +31,8 @@ export const SecondStep = () => {
 
   const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation()
 
+  const theme = useTheme()
+
   const handleNextStep = () => {
     const schema = Yup.object().shape({
       name: Yup.string().required("Nome é obrigatório"),
@@ -37,6 +40,8 @@ export const SecondStep = () => {
         .email("Digite um e-mail válido")
         .required("E-mail é obrigatório"),
     })
+
+    navigate("StepsComplete")
   }
 
   return (
@@ -45,8 +50,8 @@ export const SecondStep = () => {
         <Header>
           <BackButton onPress={goBack} />
           <Steps>
-            <Bullet active />
             <Bullet />
+            <Bullet active />
           </Steps>
         </Header>
         <KeyboardAvoidingView behavior="position" enabled>
@@ -55,13 +60,13 @@ export const SecondStep = () => {
           <Subtitle>Faça seu cadastro de{"\n"}forma rápida e fácil.</Subtitle>
 
           <Form>
-            <FormTitle>1. Dados</FormTitle>
+            <FormTitle>2. Senhas</FormTitle>
 
-            <PasswordInput iconName="lock" />
-            <PasswordInput iconName="lock" />
+            <PasswordInput iconName="lock" placeholder="Senha" />
+            <PasswordInput iconName="lock" placeholder="Repetir senha" />
           </Form>
 
-          <Button title="Próximo" />
+          <Button title="Cadastrar" color={theme.colors.success} />
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </Container>

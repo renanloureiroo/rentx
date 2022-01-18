@@ -14,7 +14,7 @@ import { PasswordInput } from "../../components/PasswordInput"
 
 import { Container, Title, Subtitle, Header, Footer, Form } from "./styles"
 
-export const Login = () => {
+export const SignIn = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 

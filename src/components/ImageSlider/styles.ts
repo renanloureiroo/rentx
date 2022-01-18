@@ -14,16 +14,7 @@ export const ImageIndexes = styled.View`
   align-self: flex-end;
   padding-right: 24px;
 `
-export const ImageIndex = styled.View<ImageIndexProps>`
-  width: 6px;
-  height: 6px;
-  background: ${({ theme, active }) =>
-    active ? theme.colors.title : theme.colors.shape};
 
-  border-radius: 3px;
-
-  margin-left: 8px;
-`
 export const CardWrapper = styled.View`
   width: ${Dimensions.get("window").width}px;
   height: 132px;

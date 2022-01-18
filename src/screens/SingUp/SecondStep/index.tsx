@@ -47,7 +47,10 @@ export const SecondStep = () => {
 
       // Criar usuário
 
-      navigate("StepsComplete")
+      navigate("Confirmation", {
+        title: "Conta criada!",
+        nextScreenRoute: "Home",
+      })
     } catch (err) {}
   }
 

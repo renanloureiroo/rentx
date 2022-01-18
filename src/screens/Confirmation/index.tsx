@@ -12,18 +12,23 @@ import {
   NavigationProp,
   ParamListBase,
   useNavigation,
+  useRoute,
 } from "@react-navigation/native"
 
-interface Props {
+interface Params {
   title: string
-  message: string
+  message?: string
   nextScreenRoute: string
 }
 
-export const Confirmation = ({ title, message, nextScreenRoute }: Props) => {
+export const Confirmation = () => {
   const { width } = useWindowDimensions()
 
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
+
+  const route = useRoute()
+
+  const { title, message, nextScreenRoute } = route.params as Params
 
   const handleHome = () => {
     navigate(nextScreenRoute)
@@ -36,7 +41,7 @@ export const Confirmation = ({ title, message, nextScreenRoute }: Props) => {
       <Content>
         <Done width={80} height={80} />
         <Title>{title}</Title>
-        <Subtitle>{message}</Subtitle>
+        {!!message && <Subtitle>{message}</Subtitle>}
       </Content>
 
       <Footer>

@@ -94,7 +94,10 @@ export const SchedulingDetails = () => {
       if (response.status !== 200) {
         throw new Error("bad request")
       }
-      navigate("SchedulingComplete")
+      navigate("Confirmation", {
+        title: "Carro alugado!",
+        message: `Agora você só precisa ir{'\n'}até a concessionária da RENTX`,
+      })
     } catch (err) {
       Alert.alert("Não foi possível confirmar o agendamento.")
     }

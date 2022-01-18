@@ -27,19 +27,30 @@ import {
 export const FirstStep = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [cnh, setCnh] = useState("")
+  const [driverLicense, setDriverLicense] = useState("")
 
   const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation()
 
-  const handleNextStep = () => {
-    // const schema = Yup.object().shape({
-    //   name: Yup.string().required("Nome é obrigatório"),
-    //   email: Yup.string()
-    //     .email("Digite um e-mail válido")
-    //     .required("E-mail é obrigatório"),
-    // })
+  const handleNextStep = async () => {
+    try {
+      const schema = Yup.object().shape({
+        name: Yup.string().required("Nome é obrigatório"),
+        email: Yup.string()
+          .email("Digite um e-mail válido")
+          .required("E-mail é obrigatório"),
+        driverLicense: Yup.string().required("CNH é obrigatório"),
+      })
+      const data = { name, email, driverLicense }
 
-    navigate("SecondStep")
+      await schema.validate(data)
+      navigate("SecondStep", { user: data })
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        // TODO
+      } else {
+        // TODO
+      }
+    }
   }
 
   return (
@@ -80,8 +91,8 @@ export const FirstStep = () => {
             <Input
               iconName="credit-card"
               placeholder="CNH"
-              value={cnh}
-              onChangeText={setCnh}
+              value={driverLicense}
+              onChangeText={setDriverLicense}
               keyboardType="numeric"
             />
           </Form>

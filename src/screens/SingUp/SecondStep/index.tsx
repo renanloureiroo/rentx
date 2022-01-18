@@ -26,22 +26,29 @@ import {
 } from "./styles"
 
 export const SecondStep = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
   const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation()
 
   const theme = useTheme()
 
   const handleNextStep = () => {
-    // const schema = Yup.object().shape({
-    //   name: Yup.string().required("Nome é obrigatório"),
-    //   email: Yup.string()
-    //     .email("Digite um e-mail válido")
-    //     .required("E-mail é obrigatório"),
-    // })
+    try {
+      if (!password || !confirmPassword) {
+        //TODO
+        return
+      }
 
-    navigate("StepsComplete")
+      if (password != confirmPassword) {
+        // TODO
+        return
+      }
+
+      // Criar usuário
+
+      navigate("StepsComplete")
+    } catch (err) {}
   }
 
   return (
@@ -62,8 +69,16 @@ export const SecondStep = () => {
           <Form>
             <FormTitle>2. Senhas</FormTitle>
 
-            <PasswordInput iconName="lock" placeholder="Senha" />
-            <PasswordInput iconName="lock" placeholder="Repetir senha" />
+            <PasswordInput
+              iconName="lock"
+              placeholder="Senha"
+              onChangeText={setPassword}
+            />
+            <PasswordInput
+              iconName="lock"
+              placeholder="Repetir senha"
+              onChangeText={setConfirmPassword}
+            />
           </Form>
 
           <Button

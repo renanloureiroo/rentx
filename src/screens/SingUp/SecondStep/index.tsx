@@ -34,12 +34,12 @@ export const SecondStep = () => {
   const theme = useTheme()
 
   const handleNextStep = () => {
-    const schema = Yup.object().shape({
-      name: Yup.string().required("Nome é obrigatório"),
-      email: Yup.string()
-        .email("Digite um e-mail válido")
-        .required("E-mail é obrigatório"),
-    })
+    // const schema = Yup.object().shape({
+    //   name: Yup.string().required("Nome é obrigatório"),
+    //   email: Yup.string()
+    //     .email("Digite um e-mail válido")
+    //     .required("E-mail é obrigatório"),
+    // })
 
     navigate("StepsComplete")
   }
@@ -66,7 +66,11 @@ export const SecondStep = () => {
             <PasswordInput iconName="lock" placeholder="Repetir senha" />
           </Form>
 
-          <Button title="Cadastrar" color={theme.colors.success} />
+          <Button
+            title="Cadastrar"
+            color={theme.colors.success}
+            onPress={handleNextStep}
+          />
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </Container>

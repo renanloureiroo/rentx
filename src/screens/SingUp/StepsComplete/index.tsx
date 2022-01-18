@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
 
-import { Footer, Container, Content, Subtitle, Title } from "./styles"
+import { Footer, Container, Content, Title } from "./styles"
 
-import LogoBackground from "../../assets/logo_background_gray.svg"
-import Done from "../../assets/done.svg"
+import LogoBackground from "../../../assets/logo_background_gray.svg"
+import Done from "../../../assets/done.svg"
 
 import { useWindowDimensions } from "react-native"
 import { ConfirmButton } from "../../../components/ConfirmButton"
@@ -20,7 +20,7 @@ export const StepsComplete = () => {
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
   const handleHome = () => {
-    navigate("Home")
+    // navigate("Home")
   }
   return (
     <Container>

@@ -1,6 +1,11 @@
 import { StatusBar } from "expo-status-bar"
 import React, { useState } from "react"
 import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native"
+import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
@@ -19,7 +24,11 @@ export const SignIn = () => {
   const [password, setPassword] = useState("")
 
   const theme = useTheme()
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
+  const handleRegisterScreen = () => {
+    navigate("FirstStep")
+  }
   const handleSignIn = async () => {
     try {
       const schema = Yup.object().shape({
@@ -77,7 +86,7 @@ export const SignIn = () => {
             />
             <Button
               title="Criar conta gratuita"
-              onPress={() => {}}
+              onPress={handleRegisterScreen}
               enabled={true}
               loading={false}
               color={theme.colors.background_secondary}

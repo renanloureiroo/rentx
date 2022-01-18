@@ -12,7 +12,7 @@ import * as Yup from "yup"
 import { BackButton } from "../../../components/BackButton"
 import { Bullet } from "../../../components/Bullet"
 import { Button } from "../../../components/Button"
-import { Input } from "../../../components/Input"
+import { PasswordInput } from "../../../components/PasswordInput"
 
 import {
   Container,
@@ -24,22 +24,19 @@ import {
   Title,
 } from "./styles"
 
-export const FirstStep = () => {
+export const SecondStep = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [cnh, setCnh] = useState("")
 
   const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation()
 
   const handleNextStep = () => {
-    // const schema = Yup.object().shape({
-    //   name: Yup.string().required("Nome é obrigatório"),
-    //   email: Yup.string()
-    //     .email("Digite um e-mail válido")
-    //     .required("E-mail é obrigatório"),
-    // })
-
-    navigate("SecondStep")
+    const schema = Yup.object().shape({
+      name: Yup.string().required("Nome é obrigatório"),
+      email: Yup.string()
+        .email("Digite um e-mail válido")
+        .required("E-mail é obrigatório"),
+    })
   }
 
   return (
@@ -60,33 +57,11 @@ export const FirstStep = () => {
           <Form>
             <FormTitle>1. Dados</FormTitle>
 
-            <Input
-              iconName="user"
-              placeholder="Nome"
-              value={name}
-              onChangeText={setName}
-              autoCapitalize="words"
-              autoCorrect={false}
-            />
-            <Input
-              iconName="mail"
-              placeholder="E-mail"
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-            <Input
-              iconName="credit-card"
-              placeholder="CNH"
-              value={cnh}
-              onChangeText={setCnh}
-              keyboardType="numeric"
-            />
+            <PasswordInput iconName="lock" />
+            <PasswordInput iconName="lock" />
           </Form>
 
-          <Button title="Próximo" onPress={handleNextStep} />
+          <Button title="Próximo" />
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </Container>

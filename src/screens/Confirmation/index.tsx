@@ -14,13 +14,19 @@ import {
   useNavigation,
 } from "@react-navigation/native"
 
-export const SchedulingComplete = () => {
+interface Props {
+  title: string
+  message: string
+  nextScreenRoute: string
+}
+
+export const Confirmation = ({ title, message, nextScreenRoute }: Props) => {
   const { width } = useWindowDimensions()
 
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
   const handleHome = () => {
-    navigate("Home")
+    navigate(nextScreenRoute)
   }
   return (
     <Container>
@@ -29,11 +35,8 @@ export const SchedulingComplete = () => {
 
       <Content>
         <Done width={80} height={80} />
-        <Title>Carro alugado!</Title>
-        <Subtitle>
-          Agora você só precisa ir{"\n"}até a concessionária da RENTX{"\n"}pegar
-          o seu automóvel.
-        </Subtitle>
+        <Title>{title}</Title>
+        <Subtitle>{message}</Subtitle>
       </Content>
 
       <Footer>

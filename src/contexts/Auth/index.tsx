@@ -38,8 +38,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         email,
         password,
       })
+      const { user, token } = response.data
 
-      setData(response.data)
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}}`
+      setData({ user, token })
       console.log(response.data)
     } catch (err) {}
   }

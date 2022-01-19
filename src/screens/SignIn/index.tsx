@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native"
 import { useTheme } from "styled-components"
 import * as Yup from "yup"
@@ -19,6 +20,7 @@ import { PasswordInput } from "../../components/PasswordInput"
 
 import { Container, Title, Subtitle, Header, Footer, Form } from "./styles"
 import api from "../../services/api"
+import { useAuth } from "../../hooks/Auth"
 
 export const SignIn = () => {
   const [email, setEmail] = useState("")
@@ -27,9 +29,12 @@ export const SignIn = () => {
   const theme = useTheme()
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
+  const { signIn } = useAuth()
+
   const handleRegisterScreen = () => {
     navigate("FirstStep")
   }
+
   const handleSignIn = async () => {
     try {
       const schema = Yup.object().shape({
@@ -41,16 +46,15 @@ export const SignIn = () => {
       })
       await schema.validate({ email, password })
 
-      const response = await api.post("/sessions", {
-        email,
-        password,
-      })
-      console.log(response.data)
+      await signIn({ email, password })
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        // TODO
+        Alert.alert("Opa", error.message)
       } else {
-        // TODO
+        Alert.alert(
+          "Erro na autenticação",
+          "Ocorreu um erro ao fazer login, verifique as credenciais"
+        )
       }
     }
   }

@@ -20,6 +20,7 @@ import {
 import theme from "./src/global/styles/theme"
 
 import { Routes } from "./src/routes"
+import { AuthContextProvider } from "./src/contexts/Auth"
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,7 +37,9 @@ export default function App() {
     return (
       <ThemeProvider theme={theme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Routes />
+          <AuthContextProvider>
+            <Routes />
+          </AuthContextProvider>
         </GestureHandlerRootView>
       </ThemeProvider>
     )

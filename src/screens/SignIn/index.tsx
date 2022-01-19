@@ -18,6 +18,7 @@ import { Input } from "../../components/Input"
 import { PasswordInput } from "../../components/PasswordInput"
 
 import { Container, Title, Subtitle, Header, Footer, Form } from "./styles"
+import api from "../../services/api"
 
 export const SignIn = () => {
   const [email, setEmail] = useState("")
@@ -38,8 +39,13 @@ export const SignIn = () => {
 
         password: Yup.string().required("Senha é obrigatório"),
       })
-
       await schema.validate({ email, password })
+
+      const response = await api.post("/sessions", {
+        email,
+        password,
+      })
+      console.log(response.data)
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         // TODO
@@ -80,7 +86,7 @@ export const SignIn = () => {
           <Footer>
             <Button
               title="Login"
-              onPress={() => {}}
+              onPress={handleSignIn}
               enabled={true}
               loading={false}
             />

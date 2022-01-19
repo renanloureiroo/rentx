@@ -2,18 +2,18 @@ import {
   NavigationProp,
   ParamListBase,
   useNavigation,
+  useRoute,
 } from "@react-navigation/native"
 import React, { useState } from "react"
 import { Keyboard, KeyboardAvoidingView } from "react-native"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
 import { useTheme } from "styled-components"
 
-import * as Yup from "yup"
-
 import { BackButton } from "../../../components/BackButton"
 import { Bullet } from "../../../components/Bullet"
 import { Button } from "../../../components/Button"
 import { PasswordInput } from "../../../components/PasswordInput"
+import api from "../../../services/api"
 
 import {
   Container,
@@ -25,33 +25,57 @@ import {
   Title,
 } from "./styles"
 
+interface Params {
+  user: {
+    name: string
+    email: string
+    driverLicense: string
+  }
+}
+
 export const SecondStep = () => {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
 
   const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation()
 
+  const route = useRoute()
+
+  const { user } = route.params as Params
+
   const theme = useTheme()
 
-  const handleNextStep = () => {
-    try {
-      if (!password || !confirmPassword) {
-        //TODO
-        return
-      }
+  const handleNextStep = async () => {
+    if (!password || !confirmPassword) {
+      throw new Error("Campos de senha não preenchidos!")
+    }
 
-      if (password != confirmPassword) {
-        // TODO
-        return
-      }
+    if (password != confirmPassword) {
+      throw new Error("As senhas não são iguais!")
+    }
 
-      // Criar usuário
+    // Criar usuário
 
-      navigate("Confirmation", {
-        title: "Conta criada!",
-        nextScreenRoute: "Home",
+    const data = {
+      name: user.name,
+      email: user.email,
+      driver_license: user.driverLicense,
+      password,
+    }
+    console.log(data)
+    await api
+      .post("/users/", data)
+      .then(() => {
+        navigate("Confirmation", {
+          title: "Conta criada!",
+          nextScreenRoute: "SignIn",
+        })
       })
-    } catch (err) {}
+      .catch((err) => console.log(err.message))
+
+    // if (response.status !== 201) {
+    //   throw new Error("Ocorreu um erro ao cadastrar usuário!")
+    // }
   }
 
   return (
@@ -76,11 +100,13 @@ export const SecondStep = () => {
               iconName="lock"
               placeholder="Senha"
               onChangeText={setPassword}
+              value={password}
             />
             <PasswordInput
               iconName="lock"
               placeholder="Repetir senha"
               onChangeText={setConfirmPassword}
+              value={confirmPassword}
             />
           </Form>
 

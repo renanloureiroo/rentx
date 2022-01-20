@@ -76,6 +76,7 @@ export const CarDetails = () => {
   })
 
   const handleGoBack = () => {
+    console.log("Voltar")
     goBack()
   }
 

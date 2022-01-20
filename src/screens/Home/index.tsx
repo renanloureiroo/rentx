@@ -54,26 +54,22 @@ export const Home = () => {
     }
   })
 
-  const onGestureEvent = useAnimatedGestureHandler({
-    onStart(_, ctx: any) {
-      ctx.positionX = positionX.value
-      ctx.positionY = positionY.value
-    },
+  // const onGestureEvent = useAnimatedGestureHandler({
+  //   onStart(_, ctx: any) {
+  //     ctx.positionX = positionX.value
+  //     ctx.positionY = positionY.value
+  //   },
 
-    onActive(event, ctx: any) {
-      positionX.value = ctx.positionX + event.translationX
-      positionY.value = ctx.positionY + event.translationY
-    },
+  //   onActive(event, ctx: any) {
+  //     positionX.value = ctx.positionX + event.translationX
+  //     positionY.value = ctx.positionY + event.translationY
+  //   },
 
-    onEnd() {},
-  })
+  //   onEnd() {},
+  // })
 
   const handleCarDetails = (car: CarDTO) => {
     navigate("CarDetails", { car: car })
-  }
-
-  const handleMyCars = () => {
-    navigate("MyCars")
   }
 
   useEffect(() => {

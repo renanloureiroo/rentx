@@ -124,7 +124,7 @@ export const Home = () => {
         />
       )}
 
-      <PanGestureHandler onGestureEvent={onGestureEvent}>
+      {/* <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View
           style={[
             {
@@ -143,7 +143,7 @@ export const Home = () => {
             <Ionicons name="car-sport" size={32} color={theme.colors.shape} />
           </ButtonAnimated>
         </Animated.View>
-      </PanGestureHandler>
+      </PanGestureHandler> */}
     </Container>
   )
 }

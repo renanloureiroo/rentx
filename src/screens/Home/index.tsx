@@ -40,19 +40,19 @@ export const Home = () => {
   const positionY = useSharedValue(0)
   const positionX = useSharedValue(0)
 
-  const myCarsButtonStyleAnimated = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: positionX.value,
-        },
+  // const myCarsButtonStyleAnimated = useAnimatedStyle(() => {
+  //   return {
+  //     transform: [
+  //       {
+  //         translateX: positionX.value,
+  //       },
 
-        {
-          translateY: positionY.value,
-        },
-      ],
-    }
-  })
+  //       {
+  //         translateY: positionY.value,
+  //       },
+  //     ],
+  //   }
+  // })
 
   // const onGestureEvent = useAnimatedGestureHandler({
   //   onStart(_, ctx: any) {
@@ -73,26 +73,25 @@ export const Home = () => {
   }
 
   useEffect(() => {
+    let isMounted = true
     const fetchCars = async () => {
       try {
         const response = await api.get("/cars")
 
-        setCars(response.data)
+        if (isMounted) setCars(response.data)
       } catch (err) {
         console.log(err)
       } finally {
-        setLoading(false)
+        if (isMounted) setLoading(false)
       }
     }
 
     fetchCars()
-  }, [])
 
-  // useEffect(() => {
-  //   BackHandler.addEventListener("hardwareBackPress", () => {
-  //     return true
-  //   })
-  // })
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   return (
     <Container>
@@ -143,13 +142,3 @@ export const Home = () => {
     </Container>
   )
 }
-
-const styles = StyleSheet.create({
-  button: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-})

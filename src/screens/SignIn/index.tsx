@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {
   NavigationProp,
   ParamListBase,
@@ -21,6 +21,7 @@ import { PasswordInput } from "../../components/PasswordInput"
 import { Container, Title, Subtitle, Header, Footer, Form } from "./styles"
 import api from "../../services/api"
 import { useAuth } from "../../hooks/Auth"
+import { database } from "../../database"
 
 export const SignIn = () => {
   const [email, setEmail] = useState("")
@@ -58,6 +59,7 @@ export const SignIn = () => {
       }
     }
   }
+
   return (
     <KeyboardAvoidingView behavior="position" enabled>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

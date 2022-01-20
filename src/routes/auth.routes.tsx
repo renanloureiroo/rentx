@@ -10,7 +10,7 @@ import { SecondStep } from "../screens/SingUp/SecondStep"
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
-export const StackRoutes = () => {
+export const AuthRoutes = () => {
   return (
     <Navigator
       screenOptions={{

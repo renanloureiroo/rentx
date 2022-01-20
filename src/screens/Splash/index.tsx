@@ -57,7 +57,7 @@ export const Splash = () => {
   })
 
   const startApp = () => {
-    navigate("Home")
+    navigate("SignIn")
   }
   useEffect(() => {
     splashAnimated.value = withTiming(

@@ -1,7 +1,9 @@
 import React from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import { StackRoutes } from "./app.stack.routes"
+import { AppStackRoutes } from "./app.stack.routes"
+import { Home } from "../screens/Home"
+import { MyCars } from "../screens/MyCars"
 
 const { Navigator, Screen } = createBottomTabNavigator()
 
@@ -11,9 +13,11 @@ export const AppTabRoutes = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home"
+      initialRouteName="HomeStack"
     >
-      <Screen name="HomeStack" component={StackRoutes} />
+      <Screen name="HomeStack" component={AppStackRoutes} />
+      <Screen name="Profile" component={AppStackRoutes} />
+      <Screen name="MyCars" component={MyCars} />
     </Navigator>
   )
 }

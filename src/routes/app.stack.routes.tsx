@@ -7,10 +7,11 @@ import { Scheduling } from "../screens/Scheduling"
 import { SchedulingDetails } from "../screens/SchedulingDetails"
 import { Confirmation } from "../screens/Confirmation"
 import { MyCars } from "../screens/MyCars"
+import { Splash } from "../screens/Splash"
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
-export const StackRoutes = () => {
+export const AppStackRoutes = () => {
   return (
     <Navigator
       screenOptions={{

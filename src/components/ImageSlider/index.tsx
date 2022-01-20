@@ -25,14 +25,14 @@ export const ImageSlider = ({ imagesUrl }: Props) => {
   return (
     <Container>
       <ImageIndexes>
-        {imagesUrl.map((_, index) => (
-          <Bullet key={String(index)} active={index === imageIndex} />
+        {imagesUrl.map((item, index) => (
+          <Bullet key={String(item.id)} active={index === imageIndex} />
         ))}
       </ImageIndexes>
 
       <FlatList
         data={imagesUrl}
-        keyExtractor={(key) => key.car_id}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <CardWrapper>
             <CardImage source={{ uri: item.photo }} resizeMode="contain" />

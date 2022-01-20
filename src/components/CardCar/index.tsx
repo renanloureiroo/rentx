@@ -61,13 +61,13 @@ export const CardCar = ({ data, duration = 1000, ...rest }: Props) => {
           <Model>{data.name}</Model>
 
           <About>
-            <Period>{data.rent.period}</Period>
+            <Period>{data.period}</Period>
             <PriceContainer>
               <Price>
                 {Intl.NumberFormat("pt-BR", {
                   style: "currency",
                   currency: "BRL",
-                }).format(data.rent.price)}
+                }).format(data.price)}
               </Price>
               <Type>
                 <Icon width={RFValue(20)} height={RFValue(20)} />

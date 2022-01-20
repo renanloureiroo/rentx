@@ -120,12 +120,12 @@ export const CarDetails = () => {
           </Description>
 
           <Rent>
-            <Period>{car.rent.period}</Period>
+            <Period>{car.period}</Period>
             <Price>
               {Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRl",
-              }).format(car.rent.price)}
+              }).format(car.price)}
             </Price>
           </Rent>
         </Details>

@@ -64,7 +64,7 @@ export const SchedulingDetails = () => {
 
   const { params } = useRoute()
   const { car, dates, period } = params as Params
-  const total = car.rent.price * dates.length
+  const total = car.price * dates.length
 
   const handleGoBack = () => {
     goBack()
@@ -122,8 +122,8 @@ export const SchedulingDetails = () => {
           </Description>
 
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
 
@@ -164,7 +164,7 @@ export const SchedulingDetails = () => {
           <PriceInfoContainer>
             <PriceTitle>Total</PriceTitle>
             <PriceInfo>
-              R${car.rent.price} x {dates.length} diárias
+              R${car.price} x {dates.length} diárias
             </PriceInfo>
           </PriceInfoContainer>
 

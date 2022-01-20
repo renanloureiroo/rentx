@@ -5,7 +5,11 @@ import { Bullet } from "../Bullet"
 import { Container, ImageIndexes, CardWrapper, CardImage } from "./styles"
 
 interface Props {
-  imagesUrl: string[]
+  imagesUrl: {
+    id: string
+    car_id: string
+    photo: string
+  }[]
 }
 interface ChangedImageProps {
   viewableItems: ViewToken[]
@@ -28,10 +32,10 @@ export const ImageSlider = ({ imagesUrl }: Props) => {
 
       <FlatList
         data={imagesUrl}
-        keyExtractor={(key) => key}
+        keyExtractor={(key) => key.car_id}
         renderItem={({ item }) => (
           <CardWrapper>
-            <CardImage source={{ uri: item }} resizeMode="contain" />
+            <CardImage source={{ uri: item.photo }} resizeMode="contain" />
           </CardWrapper>
         )}
         horizontal

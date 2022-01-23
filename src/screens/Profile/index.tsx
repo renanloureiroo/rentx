@@ -14,6 +14,9 @@ import {
   Avatar,
   Content,
   Form,
+  SwitchForm,
+  TitleWrapper,
+  TitleSwitch,
 } from "./styles"
 import { Input } from "../../components/Input"
 import { KeyboardAvoidingView, Platform } from "react-native"
@@ -27,7 +30,7 @@ export const Profile = () => {
 
   const handleSignOut = () => {}
   return (
-    <KeyboardAvoidingView behavior={"height"} enabled>
+    <KeyboardAvoidingView behavior={"position"} enabled>
       <Container>
         <Header>
           <HeaderTop>
@@ -53,6 +56,15 @@ export const Profile = () => {
         </Header>
 
         <Content>
+          <SwitchForm>
+            <TitleWrapper active>
+              <TitleSwitch active>Dados</TitleSwitch>
+            </TitleWrapper>
+
+            <TitleWrapper>
+              <TitleSwitch>Trocar senha</TitleSwitch>
+            </TitleWrapper>
+          </SwitchForm>
           <Form>
             <Input
               value={name}

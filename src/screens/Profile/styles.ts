@@ -1,19 +1,23 @@
 import { BorderlessButton } from "react-native-gesture-handler"
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
-import { RFValue } from "react-native-responsive-fontsize"
-import styled from "styled-components/native"
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
+import styled, { css } from "styled-components/native"
+
+interface TitleSwitchProps {
+  active?: boolean
+}
 
 export const Container = styled.View``
 
 export const Header = styled.View`
   background: ${({ theme }) => theme.colors.header};
-  height: ${RFValue(227)}px;
+  height: ${RFPercentage(30)}px;
   padding: 0px 24px;
 
   align-items: center;
 `
 export const HeaderTop = styled.View`
-  margin-top: ${getStatusBarHeight() + 30}px;
+  margin-top: ${getStatusBarHeight() + 20}px;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -44,8 +48,39 @@ export const Avatar = styled.Image`
 `
 
 export const Content = styled.View`
-  margin-top: 90px;
+  margin-top: 120px;
   padding: 0px 24px;
+`
+
+export const SwitchForm = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom-width: 1px;
+  border-bottom-color: ${({ theme }) => theme.colors.line};
+
+  margin-bottom: 24px;
+`
+
+export const TitleWrapper = styled.View<TitleSwitchProps>`
+  ${({ theme, active }) =>
+    active &&
+    css`
+      border-bottom-width: 2px;
+      border-bottom-color: ${theme.colors.main};
+    `}
+
+  margin-left: 24px;
+`
+
+export const TitleSwitch = styled.Text<TitleSwitchProps>`
+  font-size: ${RFValue(20)}px;
+  font-family: ${({ theme }) => theme.fonts.secondary_600};
+  color: ${({ theme, active }) =>
+    active ? theme.colors.title : theme.colors.text_detail};
+
+  padding-bottom: 14px;
 `
 
 export const Form = styled.View`

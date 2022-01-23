@@ -27,6 +27,7 @@ export const AppTabRoutes = () => {
           height: 78,
           backgroundColor: theme.colors.background_primary,
         },
+        tabBarHideOnKeyboard: true,
       }}
       initialRouteName="HomeStack"
     >

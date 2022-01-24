@@ -1,4 +1,4 @@
-import { BorderlessButton } from "react-native-gesture-handler"
+import { BorderlessButton, RectButton } from "react-native-gesture-handler"
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import styled, { css } from "styled-components/native"
@@ -40,11 +40,28 @@ export const AvatarWrapper = styled.View`
   border-radius: 90px;
   position: absolute;
   bottom: -90px;
+  width: 180px;
+  height: 180px;
+
+  background: ${({ theme }) => theme.colors.shape};
 `
 
 export const Avatar = styled.Image`
-  width: 180px;
-  height: 180px;
+  width: 100%;
+  height: 100%;
+`
+
+export const ChangeAvatarWrapper = styled(RectButton)`
+  background: ${({ theme }) => theme.colors.main};
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+
+  bottom: 10px;
+  right: 10px;
 `
 
 export const Content = styled.View`

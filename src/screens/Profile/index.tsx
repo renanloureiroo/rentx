@@ -3,6 +3,7 @@ import { useTheme } from "styled-components"
 import { BackButton } from "../../components/BackButton"
 
 import { Ionicons } from "@expo/vector-icons"
+import { Feather } from "@expo/vector-icons"
 
 import {
   Container,
@@ -17,6 +18,7 @@ import {
   SwitchForm,
   TitleWrapper,
   TitleSwitch,
+  ChangeAvatarWrapper,
 } from "./styles"
 import { Input } from "../../components/Input"
 import { KeyboardAvoidingView, Platform } from "react-native"
@@ -52,6 +54,10 @@ export const Profile = () => {
                 uri: "https://avatars.githubusercontent.com/u/63200402?v=4",
               }}
             />
+
+            <ChangeAvatarWrapper>
+              <Feather name="camera" size={24} color={theme.colors.shape} />
+            </ChangeAvatarWrapper>
           </AvatarWrapper>
         </Header>
 

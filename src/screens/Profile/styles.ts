@@ -4,7 +4,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import styled, { css } from "styled-components/native"
 
 interface TitleSwitchProps {
-  active?: boolean
+  active: boolean
 }
 
 export const Container = styled.View``
@@ -73,29 +73,27 @@ export const SwitchForm = styled.View`
   width: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.line};
 
   margin-bottom: 24px;
 `
 
-export const TitleWrapper = styled.View<TitleSwitchProps>`
-  ${({ theme, active }) =>
-    active &&
-    css`
-      border-bottom-width: 2px;
-      border-bottom-color: ${theme.colors.main};
-    `}
-
-  margin-left: 24px;
-`
+export const TitleWrapper = styled(RectButton)``
 
 export const TitleSwitch = styled.Text<TitleSwitchProps>`
   font-size: ${RFValue(20)}px;
   font-family: ${({ theme }) => theme.fonts.secondary_600};
   color: ${({ theme, active }) =>
     active ? theme.colors.title : theme.colors.text_detail};
+
+  ${({ theme, active }) =>
+    active &&
+    css`
+      border-bottom-width: 2px;
+      border-bottom-color: ${theme.colors.main};
+    `}
 
   padding-bottom: 14px;
 `

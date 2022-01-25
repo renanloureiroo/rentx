@@ -19,9 +19,8 @@ import { Input } from "../../components/Input"
 import { PasswordInput } from "../../components/PasswordInput"
 
 import { Container, Title, Subtitle, Header, Footer, Form } from "./styles"
-import api from "../../services/api"
+
 import { useAuth } from "../../hooks/Auth"
-import { database } from "../../database"
 
 export const SignIn = () => {
   const [email, setEmail] = useState("")

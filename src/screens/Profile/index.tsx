@@ -24,7 +24,7 @@ import {
   ChangeAvatarWrapper,
 } from "./styles"
 import { Input } from "../../components/Input"
-import { Keyboard, KeyboardAvoidingView, Platform } from "react-native"
+import { Keyboard, KeyboardAvoidingView, Alert } from "react-native"
 import { Button } from "../../components/Button"
 import { PasswordInput } from "../../components/PasswordInput"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
@@ -65,7 +65,14 @@ export const Profile = () => {
   }
 
   const handleSignOut = async () => {
-    await signOut()
+    Alert.alert(
+      "Tem certeza que quer sair?",
+      "Ao sair, será preciso conexão com a internet para entrar novamente!",
+      [
+        { text: "Cancelar", onPress: () => {} },
+        { text: "Sair", onPress: () => signOut() },
+      ]
+    )
   }
 
   const handleSelectAvatar = async () => {

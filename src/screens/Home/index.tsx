@@ -18,14 +18,10 @@ import { Container, Header, TotalCars, ContentHeader, CarList } from "./styles"
 const ButtonAnimated = Animated.createAnimatedComponent(RectButton)
 
 import Logo from "../../assets/logo.svg"
-import { Load } from "../../components/Load"
+
 import { useTheme } from "styled-components"
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  useAnimatedGestureHandler,
-} from "react-native-reanimated"
-import { BackHandler, StyleSheet } from "react-native"
+import Animated, { useSharedValue } from "react-native-reanimated"
+
 import { LoadAnimation } from "../../components/LoadAnimation"
 
 export const Home = () => {

@@ -3,6 +3,7 @@ import { useTheme } from "styled-components"
 import { BackButton } from "../../components/BackButton"
 
 import * as ImagePicker from "expo-image-picker"
+import * as Yup from "yup"
 
 import { Ionicons } from "@expo/vector-icons"
 import { Feather } from "@expo/vector-icons"
@@ -28,6 +29,7 @@ import { Button } from "../../components/Button"
 import { PasswordInput } from "../../components/PasswordInput"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
 import { useAuth } from "../../hooks/Auth"
+import { useToast } from "react-native-toast-notifications"
 
 interface Props {
   cancelled: boolean
@@ -38,7 +40,7 @@ interface Props {
 }
 
 export const Profile = () => {
-  const { user, signOut } = useAuth()
+  const { user, signOut, updateUser } = useAuth()
 
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
@@ -48,8 +50,11 @@ export const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [avatar, setAvatar] = useState(user.avatar)
 
+  const [loading, setLoading] = useState(false)
+
   const [isActive, setIsActive] = useState<"data" | "changePassword">("data")
   const theme = useTheme()
+  const toast = useToast()
 
   const handleSetData = () => {
     setIsActive("data")
@@ -76,6 +81,54 @@ export const Profile = () => {
       if (!result.cancelled) setAvatar(result.uri)
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const handleUpdateUser = async () => {
+    setLoading(true)
+    try {
+      const schema = Yup.object().shape({
+        driver_license: Yup.string().required("CNH é obrigatória"),
+        name: Yup.string().required("Nome é obrigatório"),
+      })
+
+      const data = { name, driver_license }
+
+      await schema.validate(data)
+      updateUser({
+        id: user.id,
+        user_id: user.user_id,
+        driver_license,
+        name,
+        email: user.email,
+        avatar,
+        token: user.token,
+      })
+
+      toast.show("Perfil atualizado!", {
+        type: "success",
+        placement: "top",
+        duration: 3000,
+        animationType: "slide-in",
+      })
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        toast.show(err.message, {
+          type: "danger",
+          placement: "top",
+          duration: 3000,
+          animationType: "slide-in",
+        })
+      } else {
+        toast.show("Houve um erro ao atualizar o perfil!", {
+          type: "danger",
+          placement: "top",
+          duration: 3000,
+          animationType: "slide-in",
+        })
+      }
+    } finally {
+      setLoading(false)
     }
   }
   return (
@@ -127,20 +180,15 @@ export const Profile = () => {
             {isActive == "data" ? (
               <Form>
                 <Input
-                  defaultValue={user.name}
+                  value={name}
                   onChangeText={setName}
                   iconName="user"
                   autoCapitalize="words"
                   autoCorrect={false}
                 />
+                <Input value={email} iconName="mail" editable={false} />
                 <Input
-                  defaultValue={user.email}
-                  onChangeText={setEmail}
-                  iconName="mail"
-                  editable={false}
-                />
-                <Input
-                  defaultValue={user.driver_license}
+                  value={driver_license}
                   onChangeText={setDriver_license}
                   iconName="credit-card"
                   keyboardType="numeric"
@@ -169,7 +217,11 @@ export const Profile = () => {
               </Form>
             )}
 
-            <Button title="Salvar alterações" onPress={() => {}} />
+            <Button
+              title="Salvar alterações"
+              onPress={handleUpdateUser}
+              loading={loading}
+            />
           </Content>
         </Container>
       </TouchableWithoutFeedback>

@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react"
+import { ToastProvider } from "react-native-toast-notifications"
 
 import { AuthContextProvider } from "./Auth"
 
@@ -7,5 +8,9 @@ interface AppProviderProps {
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  return <AuthContextProvider>{children}</AuthContextProvider>
+  return (
+    <AuthContextProvider>
+      <ToastProvider>{children}</ToastProvider>
+    </AuthContextProvider>
+  )
 }

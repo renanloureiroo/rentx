@@ -1,5 +1,5 @@
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
-import { RFValue } from "react-native-responsive-fontsize"
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import styled from "styled-components/native"
 
 export const Container = styled.View`
@@ -18,7 +18,7 @@ export const Header = styled.View`
 
   background: ${({ theme }) => theme.colors.background_primary};
   z-index: 1;
-  padding-bottom: 64px;
+  padding-bottom: ${RFPercentage(10)}px;
 `
 export const Steps = styled.View`
   flex-direction: row;
@@ -41,7 +41,7 @@ export const Subtitle = styled.Text`
 `
 
 export const Form = styled.View`
-  margin: 64px 0px 16px 0px;
+  margin: 20px 0px 16px 0px;
 `
 
 export const FormTitle = styled.Text`

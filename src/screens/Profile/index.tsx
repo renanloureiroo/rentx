@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { useTheme } from "styled-components"
 import { BackButton } from "../../components/BackButton"
 
+import * as ImagePicker from "expo-image-picker"
+
 import { Ionicons } from "@expo/vector-icons"
 import { Feather } from "@expo/vector-icons"
 
@@ -27,18 +29,27 @@ import { PasswordInput } from "../../components/PasswordInput"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
 import { useAuth } from "../../hooks/Auth"
 
+interface Props {
+  cancelled: boolean
+  height: number
+  type: string
+  uri: string
+  width: number
+}
+
 export const Profile = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [driver_license, setDriver_license] = useState("")
+  const { user } = useAuth()
+
+  const [name, setName] = useState(user.name)
+  const [email, setEmail] = useState(user.email)
+  const [driver_license, setDriver_license] = useState(user.driver_license)
 
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [avatar, setAvatar] = useState(user.avatar)
 
   const [isActive, setIsActive] = useState<"data" | "changePassword">("data")
   const theme = useTheme()
-
-  const { user } = useAuth()
 
   const handleSetData = () => {
     setIsActive("data")
@@ -49,6 +60,30 @@ export const Profile = () => {
   }
 
   const handleSignOut = () => {}
+
+  const handleSelectAvatar = async () => {
+    try {
+      const result = (await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 4],
+        quality: 1,
+      })) as Props
+      if (result.cancelled) return
+
+      if (!result.cancelled) setAvatar(result.uri)
+    } catch (error) {
+      console.log(error)
+    }
+
+    // if (result.cancelled) {
+    //   return
+    // }
+
+    // if (!result.cancelled) {
+    //   setAvatar(result.uri)
+    // }
+  }
   return (
     <KeyboardAvoidingView behavior={"position"} enabled>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -68,13 +103,15 @@ export const Profile = () => {
               </LogoutButton>
             </HeaderTop>
             <AvatarWrapper>
-              <Avatar
-                source={{
-                  uri: "https://avatars.githubusercontent.com/u/63200402?v=4",
-                }}
-              />
+              {!!avatar && (
+                <Avatar
+                  source={{
+                    uri: avatar,
+                  }}
+                />
+              )}
 
-              <ChangeAvatarWrapper>
+              <ChangeAvatarWrapper onPress={handleSelectAvatar}>
                 <Feather name="camera" size={24} color={theme.colors.shape} />
               </ChangeAvatarWrapper>
             </AvatarWrapper>

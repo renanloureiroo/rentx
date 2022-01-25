@@ -37,18 +37,21 @@ export const LogoutButton = styled(BorderlessButton)`
 `
 
 export const AvatarWrapper = styled.View`
-  border-radius: 90px;
   position: absolute;
+  border-radius: 90px;
   bottom: -90px;
   width: 180px;
   height: 180px;
 
   background: ${({ theme }) => theme.colors.shape};
+
+  z-index: 10;
 `
 
 export const Avatar = styled.Image`
   width: 100%;
   height: 100%;
+  border-radius: 90px;
 `
 
 export const ChangeAvatarWrapper = styled(RectButton)`

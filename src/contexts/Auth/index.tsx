@@ -21,6 +21,7 @@ interface SigInCredentials {
 export interface AuthContextData {
   user: User
   signIn: (credential: SigInCredentials) => Promise<void>
+  signOut: () => Promise<void>
 }
 
 interface AuthContextProviderProps {
@@ -59,6 +60,19 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   }
 
+  async function signOut() {
+    try {
+      await database.write(async () => {
+        const userSelected = await database
+          .get<ModelUser>("users")
+          .find(data.id)
+
+        await userSelected.destroyPermanently()
+        setData({} as User)
+      })
+    } catch (error) {}
+  }
+
   useEffect(() => {
     async function loadUserData() {
       const rehydrated = await database.get("users").query().fetch()
@@ -74,7 +88,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     loadUserData()
   }, [])
   return (
-    <AuthContext.Provider value={{ user: data, signIn }}>
+    <AuthContext.Provider value={{ user: data, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )

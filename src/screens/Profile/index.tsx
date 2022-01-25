@@ -38,7 +38,7 @@ interface Props {
 }
 
 export const Profile = () => {
-  const { user } = useAuth()
+  const { user, signOut } = useAuth()
 
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
@@ -59,7 +59,9 @@ export const Profile = () => {
     setIsActive("changePassword")
   }
 
-  const handleSignOut = () => {}
+  const handleSignOut = async () => {
+    await signOut()
+  }
 
   const handleSelectAvatar = async () => {
     try {
@@ -75,14 +77,6 @@ export const Profile = () => {
     } catch (error) {
       console.log(error)
     }
-
-    // if (result.cancelled) {
-    //   return
-    // }
-
-    // if (!result.cancelled) {
-    //   setAvatar(result.uri)
-    // }
   }
   return (
     <KeyboardAvoidingView behavior={"position"} enabled>

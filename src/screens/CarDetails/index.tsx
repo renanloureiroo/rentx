@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Accessory } from "../../components/Accessory"
 import { BackButton } from "../../components/BackButton"
 import { ImageSlider } from "../../components/ImageSlider"
@@ -40,17 +40,22 @@ import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
 import { StyleSheet } from "react-native"
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
 import { useTheme } from "styled-components"
+import { Car } from "../../database/model/Car"
+import api from "../../services/api"
+import { useNetInfo } from "@react-native-community/netinfo"
 
 interface Params {
-  car: CarDTO
+  car: Car
 }
 
 export const CarDetails = () => {
+  const [carUpdated, setCarUpdated] = useState<CarDTO>({} as CarDTO)
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
   const theme = useTheme()
   const route = useRoute()
 
   const { car } = route.params as Params
+  const { isConnected } = useNetInfo()
 
   const scrollY = useSharedValue(0)
   const scrollHandler = useAnimatedScrollHandler((event) => {
@@ -83,6 +88,16 @@ export const CarDetails = () => {
   const handleScheduling = () => {
     navigate("Scheduling", { car: car })
   }
+
+  useEffect(() => {
+    const fetchCarUpdated = async () => {
+      const response = await api.get(`/cars/${car.id}`)
+      if (response.status === 200) setCarUpdated(response.data)
+    }
+
+    if (isConnected === true) fetchCarUpdated()
+  }, [isConnected])
+
   return (
     <Container>
       <StatusBar style="dark" backgroundColor="transparent" translucent />
@@ -100,7 +115,19 @@ export const CarDetails = () => {
 
         <Animated.View style={[sliderCarsStyleAnimation]}>
           <CarImages>
-            <ImageSlider imagesUrl={car.photos} />
+            <ImageSlider
+              imagesUrl={
+                !!carUpdated.photos
+                  ? carUpdated.photos
+                  : [
+                      {
+                        id: car.thumbnail,
+                        car_id: car.thumbnail,
+                        photo: car.thumbnail,
+                      },
+                    ]
+              }
+            />
           </CarImages>
         </Animated.View>
       </Animated.View>
@@ -131,27 +158,25 @@ export const CarDetails = () => {
           </Rent>
         </Details>
 
-        <Accessories>
-          {car.accessories.map((accessory) => (
-            <Accessory
-              key={accessory.type}
-              name={accessory.name}
-              icon={getAccessoryIcon(accessory.type)}
-            />
-          ))}
-        </Accessories>
+        {!!carUpdated.accessories && (
+          <Accessories>
+            {carUpdated.accessories.map((accessory) => (
+              <Accessory
+                key={accessory.type}
+                name={accessory.name}
+                icon={getAccessoryIcon(accessory.type)}
+              />
+            ))}
+          </Accessories>
+        )}
 
-        <About>
-          {car.about} {car.about}
-          {car.about}
-          {car.about}
-          {car.about}
-        </About>
+        <About>{car.about}</About>
       </Animated.ScrollView>
       <Footer>
         <Button
           title="Escolher período do aluguel"
           onPress={handleScheduling}
+          enabled={isConnected === true}
         />
       </Footer>
     </Container>

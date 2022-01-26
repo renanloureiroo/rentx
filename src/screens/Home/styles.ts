@@ -1,11 +1,9 @@
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
+import { RFValue } from "react-native-responsive-fontsize"
 import styled from "styled-components/native"
 
-import { getStatusBarHeight } from "react-native-iphone-x-helper"
 import { FlatList, FlatListProps } from "react-native"
 
-import { CarDTO } from "../../dtos/CarDTO"
-import { RectButton } from "react-native-gesture-handler"
+import { Car } from "../../database/model/Car"
 
 export const Container = styled.View`
   flex: 1;
@@ -34,7 +32,7 @@ export const TotalCars = styled.Text`
 `
 
 export const CarList = styled(
-  FlatList as new (props: FlatListProps<CarDTO>) => FlatList<CarDTO>
+  FlatList as new (props: FlatListProps<Car>) => FlatList<Car>
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: { padding: 24 },

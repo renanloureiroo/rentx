@@ -16,7 +16,6 @@ import {
 import { RFValue } from "react-native-responsive-fontsize"
 import { RectButtonProps } from "react-native-gesture-handler"
 
-import { CarDTO } from "../../dtos/CarDTO"
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
 import Animated, {
   useAnimatedStyle,
@@ -24,9 +23,10 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated"
 import { useWindowDimensions } from "react-native"
+import { Car } from "../../database/model/Car"
 
 interface Props extends RectButtonProps {
-  data: CarDTO
+  data: Car
   duration?: number
 }
 

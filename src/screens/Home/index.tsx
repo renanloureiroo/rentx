@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import {
   NavigationProp,
   ParamListBase,
@@ -6,71 +6,33 @@ import {
 } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { RFValue } from "react-native-responsive-fontsize"
-import { RectButton } from "react-native-gesture-handler"
 
 import { useNetInfo } from "@react-native-community/netinfo"
 import { synchronize } from "@nozbe/watermelondb/sync"
 import { database } from "../../database"
 
 import api from "../../services/api"
-import { CarDTO } from "../../dtos/CarDTO"
 
 import { CardCar } from "../../components/CardCar"
 import { Container, Header, TotalCars, ContentHeader, CarList } from "./styles"
 
-const ButtonAnimated = Animated.createAnimatedComponent(RectButton)
-
 import Logo from "../../assets/logo.svg"
 
-import { useTheme } from "styled-components"
-import Animated, { useSharedValue } from "react-native-reanimated"
-
 import { LoadAnimation } from "../../components/LoadAnimation"
-import { Alert } from "react-native"
+
+import { Car } from "../../database/model/Car"
 
 export const Home = () => {
-  const [cars, setCars] = useState<CarDTO[]>([])
+  const [cars, setCars] = useState<Car[]>([])
 
   const [loading, setLoading] = useState<boolean>(true)
 
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
-  const theme = useTheme()
-
   const netInfo = useNetInfo()
+  const synchronizing = useRef(false)
 
-  const positionY = useSharedValue(0)
-  const positionX = useSharedValue(0)
-
-  // const myCarsButtonStyleAnimated = useAnimatedStyle(() => {
-  //   return {
-  //     transform: [
-  //       {
-  //         translateX: positionX.value,
-  //       },
-
-  //       {
-  //         translateY: positionY.value,
-  //       },
-  //     ],
-  //   }
-  // })
-
-  // const onGestureEvent = useAnimatedGestureHandler({
-  //   onStart(_, ctx: any) {
-  //     ctx.positionX = positionX.value
-  //     ctx.positionY = positionY.value
-  //   },
-
-  //   onActive(event, ctx: any) {
-  //     positionX.value = ctx.positionX + event.translationX
-  //     positionY.value = ctx.positionY + event.translationY
-  //   },
-
-  //   onEnd() {},
-  // })
-
-  const handleCarDetails = (car: CarDTO) => {
+  const handleCarDetails = (car: Car) => {
     navigate("CarDetails", { car: car })
   }
 
@@ -79,16 +41,16 @@ export const Home = () => {
       database,
       pullChanges: async ({ lastPulledAt }) => {
         const response = await api.get(
-          `/cars/sync/pull?lasPulledVersion=${lastPulledAt || 0}`
+          `cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`
         )
 
-        const { changes, lastedVersion } = response.data
+        const { changes, latestVersion } = response.data
 
-        return { changes, timestamp: lastedVersion }
+        return { changes, timestamp: latestVersion }
       },
       pushChanges: async ({ changes }) => {
         const user = changes.user
-        await api.post("users/sync", user)
+        await api.post("/users/sync", user)
       },
     })
   }
@@ -97,9 +59,10 @@ export const Home = () => {
     let isMounted = true
     const fetchCars = async () => {
       try {
-        const response = await api.get("/cars")
+        const carCollection = database.get<Car>("cars")
+        const cars = await carCollection.query().fetch()
 
-        if (isMounted) setCars(response.data)
+        if (isMounted) setCars(cars)
       } catch (err) {
         console.log(err)
       } finally {
@@ -115,11 +78,19 @@ export const Home = () => {
   }, [])
 
   useEffect(() => {
-    if (netInfo.isConnected) {
-      Alert.alert("Você está conectado")
-    } else {
-      Alert.alert("Você está offline")
+    const syncChanges = async () => {
+      if (netInfo.isConnected && !synchronizing.current) {
+        synchronizing.current = true
+        await offlineSynchronize()
+        try {
+        } catch (err) {
+          console.log(err)
+        } finally {
+          synchronizing.current = false
+        }
+      }
     }
+    syncChanges()
   }, [netInfo.isConnected])
 
   return (
@@ -147,27 +118,6 @@ export const Home = () => {
           )}
         />
       )}
-
-      {/* <PanGestureHandler onGestureEvent={onGestureEvent}>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-              right: 22,
-              bottom: 16,
-            },
-
-            myCarsButtonStyleAnimated,
-          ]}
-        >
-          <ButtonAnimated
-            onPress={handleMyCars}
-            style={[styles.button, { backgroundColor: theme.colors.main }]}
-          >
-            <Ionicons name="car-sport" size={32} color={theme.colors.shape} />
-          </ButtonAnimated>
-        </Animated.View>
-      </PanGestureHandler> */}
     </Container>
   )
 }

@@ -1,18 +1,5 @@
 import { Model } from "@nozbe/watermelondb"
-import { field, writer } from "@nozbe/watermelondb/decorators"
-
-interface User {
-  id: string
-  name: string
-  email: string
-  avatar: string
-  driver_license: string
-}
-
-interface AddUserProps {
-  user: User
-  token: string
-}
+import { field } from "@nozbe/watermelondb/decorators"
 
 class User extends Model {
   static table = "users"

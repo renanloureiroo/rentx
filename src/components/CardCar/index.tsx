@@ -24,6 +24,7 @@ import Animated, {
 } from "react-native-reanimated"
 import { useWindowDimensions } from "react-native"
 import { Car } from "../../database/model/Car"
+import { useNetInfo } from "@react-native-community/netinfo"
 
 interface Props extends RectButtonProps {
   data: Car
@@ -34,6 +35,7 @@ export const CardCar = ({ data, duration = 1000, ...rest }: Props) => {
   const { width } = useWindowDimensions()
   const opacity = useSharedValue(0)
   const positionX = useSharedValue(0.25 * width)
+  const { isConnected } = useNetInfo()
 
   const CardCarStylesAnimated = useAnimatedStyle(() => {
     return {
@@ -64,11 +66,9 @@ export const CardCar = ({ data, duration = 1000, ...rest }: Props) => {
             <Period>{data.period}</Period>
             <PriceContainer>
               <Price>
-                {Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(data.price)}
+                {isConnected === true ? "R$" + data.price : "R$..."}
               </Price>
+
               <Type>
                 <Icon width={RFValue(20)} height={RFValue(20)} />
               </Type>

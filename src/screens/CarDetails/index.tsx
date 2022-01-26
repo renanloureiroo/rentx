@@ -25,6 +25,7 @@ import {
   About,
   Accessories,
   Footer,
+  OfflineInfo,
 } from "./styles"
 
 import { Button } from "../../components/Button"
@@ -150,10 +151,7 @@ export const CarDetails = () => {
           <Rent>
             <Period>{car.period}</Period>
             <Price>
-              {Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRl",
-              }).format(car.price)}
+              {isConnected === true ? "R$" + carUpdated.price : "R$..."}
             </Price>
           </Rent>
         </Details>
@@ -178,6 +176,11 @@ export const CarDetails = () => {
           onPress={handleScheduling}
           enabled={isConnected === true}
         />
+        {isConnected === false && (
+          <OfflineInfo>
+            Conecte-se a internet para obter mais detalhes!
+          </OfflineInfo>
+        )}
       </Footer>
     </Container>
   )

@@ -6,10 +6,11 @@ import {
 } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { RFValue } from "react-native-responsive-fontsize"
-import { PanGestureHandler, RectButton } from "react-native-gesture-handler"
-import { Ionicons } from "@expo/vector-icons"
+import { RectButton } from "react-native-gesture-handler"
 
-import NetInfo, { useNetInfo } from "@react-native-community/netinfo"
+import { useNetInfo } from "@react-native-community/netinfo"
+import { synchronize } from "@nozbe/watermelondb/sync"
+import { database } from "../../database"
 
 import api from "../../services/api"
 import { CarDTO } from "../../dtos/CarDTO"
@@ -71,6 +72,25 @@ export const Home = () => {
 
   const handleCarDetails = (car: CarDTO) => {
     navigate("CarDetails", { car: car })
+  }
+
+  const offlineSynchronize = async () => {
+    await synchronize({
+      database,
+      pullChanges: async ({ lastPulledAt }) => {
+        const response = await api.get(
+          `/cars/sync/pull?lasPulledVersion=${lastPulledAt || 0}`
+        )
+
+        const { changes, lastedVersion } = response.data
+
+        return { changes, timestamp: lastedVersion }
+      },
+      pushChanges: async ({ changes }) => {
+        const user = changes.user
+        await api.post("users/sync", user)
+      },
+    })
   }
 
   useEffect(() => {

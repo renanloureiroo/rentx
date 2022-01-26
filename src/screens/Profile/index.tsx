@@ -30,6 +30,7 @@ import { PasswordInput } from "../../components/PasswordInput"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
 import { useAuth } from "../../hooks/Auth"
 import { useToast } from "react-native-toast-notifications"
+import { useNetInfo } from "@react-native-community/netinfo"
 
 interface Props {
   cancelled: boolean
@@ -55,6 +56,7 @@ export const Profile = () => {
   const [isActive, setIsActive] = useState<"data" | "changePassword">("data")
   const theme = useTheme()
   const toast = useToast()
+  const { isConnected } = useNetInfo()
 
   const handleSetData = () => {
     setIsActive("data")
@@ -173,7 +175,9 @@ export const Profile = () => {
 
           <Content>
             <SwitchForm>
-              <TitleWrapper onPress={handleSetData}>
+              <TitleWrapper
+                onPress={isConnected === true ? handleSetData : () => {}}
+              >
                 <TitleSwitch active={isActive == "data"}>Dados</TitleSwitch>
               </TitleWrapper>
 

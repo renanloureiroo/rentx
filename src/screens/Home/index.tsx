@@ -9,6 +9,8 @@ import { RFValue } from "react-native-responsive-fontsize"
 import { PanGestureHandler, RectButton } from "react-native-gesture-handler"
 import { Ionicons } from "@expo/vector-icons"
 
+import NetInfo, { useNetInfo } from "@react-native-community/netinfo"
+
 import api from "../../services/api"
 import { CarDTO } from "../../dtos/CarDTO"
 
@@ -23,6 +25,7 @@ import { useTheme } from "styled-components"
 import Animated, { useSharedValue } from "react-native-reanimated"
 
 import { LoadAnimation } from "../../components/LoadAnimation"
+import { Alert } from "react-native"
 
 export const Home = () => {
   const [cars, setCars] = useState<CarDTO[]>([])
@@ -32,6 +35,8 @@ export const Home = () => {
   const { navigate }: NavigationProp<ParamListBase> = useNavigation()
 
   const theme = useTheme()
+
+  const netInfo = useNetInfo()
 
   const positionY = useSharedValue(0)
   const positionX = useSharedValue(0)
@@ -88,6 +93,14 @@ export const Home = () => {
       isMounted = false
     }
   }, [])
+
+  useEffect(() => {
+    if (netInfo.isConnected) {
+      Alert.alert("Você está conectado")
+    } else {
+      Alert.alert("Você está offline")
+    }
+  }, [netInfo.isConnected])
 
   return (
     <Container>

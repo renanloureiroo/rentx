@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
 
-import { Footer, Container, Content, Subtitle, Title } from "./styles"
+import { Footer, Container, Content, Subtitle, Title, Wrapper } from "./styles"
 
 import LogoBackground from "../../assets/logo_background_gray.svg"
 import Done from "../../assets/done.svg"
@@ -38,6 +38,8 @@ export const Confirmation = () => {
       <StatusBar style="light" translucent backgroundColor="transparent" />
       <LogoBackground width={width} />
 
+      <Wrapper>
+
       <Content>
         <Done width={80} height={80} />
         <Title>{title}</Title>
@@ -47,6 +49,7 @@ export const Confirmation = () => {
       <Footer>
         <ConfirmButton title="OK" onPress={handleHome} />
       </Footer>
+      </Wrapper>
     </Container>
   )
 }

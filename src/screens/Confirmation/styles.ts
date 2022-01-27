@@ -43,3 +43,6 @@ export const Footer = styled.View`
   justify-content: center;
   align-items: center;
 `
+export const Wrapper = styled.View`
+  top: -50px;
+`

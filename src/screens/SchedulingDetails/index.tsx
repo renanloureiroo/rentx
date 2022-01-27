@@ -88,6 +88,7 @@ export const SchedulingDetails = () => {
       navigate("Confirmation", {
         title: "Carro alugado!",
         message: `Agora você só precisa ir{'\n'}até a concessionária da RENTX\npegar o seu automóvel.`,
+        nextScreenRoute: "Home",
       })
     } catch (err) {
       setLoading(false)

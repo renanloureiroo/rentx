@@ -24,7 +24,6 @@ export const AppStackRoutes = () => {
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
       <Screen name="Confirmation" component={Confirmation} />
-      <Screen name="MyCars" component={MyCars} />
     </Navigator>
   )
 }

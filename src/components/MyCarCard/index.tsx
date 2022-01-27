@@ -24,14 +24,8 @@ interface Props {
 
 export const MyCarCard = ({ data }: Props) => {
   const theme = useTheme()
-  const startFormatted = format(
-    getPlatformDate(parseISO(data.start_date)),
-    "dd/MM/yyyy"
-  )
-  const endFormatted = format(
-    getPlatformDate(parseISO(data.end_date)),
-    "dd/MM/yyyy"
-  )
+  const startFormatted = format(parseISO(data.start_date), "dd/MM/yyyy")
+  const endFormatted = format(parseISO(data.end_date), "dd/MM/yyyy")
 
   const { car } = data
   const carData = {

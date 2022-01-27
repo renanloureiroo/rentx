@@ -8,12 +8,9 @@ interface Props {
   user_id: number
   car: CarDTO
   id: number
-  period: {
-    start: number
-    startFormatted: string
-    end: number
-    endFormatted: string
-  }
+  start_date: string
+  end_date: string
+  total: string
 }
 
 export const Container = styled.View`

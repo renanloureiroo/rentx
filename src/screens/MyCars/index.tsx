@@ -8,18 +8,6 @@ import { MyCarCard } from "../../components/MyCarCard"
 import { CarDTO } from "../../dtos/CarDTO"
 import api from "../../services/api"
 
-interface Cars {
-  user_id: number
-  car: CarDTO
-  id: number
-  period: {
-    start: number
-    startFormatted: string
-    end: number
-    endFormatted: string
-  }
-}
-
 import {
   Container,
   Header,
@@ -32,8 +20,18 @@ import {
   Contador,
   Loading,
 } from "./styles"
+
+interface Props {
+  user_id: number
+  car: CarDTO
+  id: number
+  start_date: string
+  end_date: string
+  total: string
+}
+
 export const MyCars = () => {
-  const [cars, setCars] = useState<Cars[]>([])
+  const [cars, setCars] = useState<Props[]>([])
 
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -48,8 +46,8 @@ export const MyCars = () => {
   useEffect(() => {
     const loadCars = async () => {
       try {
-        const response = await api.get("/schedules_byuser?user_id=1")
-
+        const response = await api.get("/rentals")
+        console.log(response.data)
         setCars(response.data)
       } catch (err) {
         console.log(err)

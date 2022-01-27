@@ -80,8 +80,8 @@ export const SchedulingDetails = () => {
     try {
       await api.post("/rentals", {
         car_id: car.id,
-        start_date: period.startFormatted,
-        end_date: period.endFormatted,
+        start_date: new Date(period.start),
+        end_date: new Date(period.end),
         total,
       })
 

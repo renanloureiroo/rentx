@@ -87,7 +87,7 @@ export const CarDetails = () => {
   }
 
   const handleScheduling = () => {
-    navigate("Scheduling", { car: car })
+    navigate("Scheduling", { car: carUpdated })
   }
 
   useEffect(() => {

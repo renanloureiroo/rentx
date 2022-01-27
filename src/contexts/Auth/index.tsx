@@ -3,6 +3,7 @@ import { database } from "../../database"
 import api from "../../services/api"
 
 import { User as ModelUser } from "../../database/model/User"
+
 interface User {
   id: string
   user_id: string
@@ -42,7 +43,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       })
       const { user, token } = response.data
 
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}}`
+      api.defaults.headers.common = {
+        Authorization: `bearer ${token}`,
+      }
 
       setData({ ...user, token })
 
@@ -99,9 +102,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       if (rehydrated.length > 0) {
         const userData = rehydrated[0]._raw as unknown as User
 
-        api.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${userData.token}}`
+        api.defaults.headers.common = {
+          Authorization: `bearer ${userData.token}`,
+        }
         setData(userData)
       }
     }

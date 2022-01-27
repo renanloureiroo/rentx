@@ -46,6 +46,7 @@ import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
 import { StatusBar } from "expo-status-bar"
 import api from "../../services/api"
 import { Alert } from "react-native"
+import { useAuth } from "../../hooks/Auth"
 
 interface Params {
   car: CarDTO
@@ -62,6 +63,10 @@ export const SchedulingDetails = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const { goBack, navigate }: NavigationProp<ParamListBase> = useNavigation()
 
+  const { user } = useAuth()
+
+  console.log(user)
+
   const { params } = useRoute()
   const { car, dates, period } = params as Params
   const total = car.price * dates.length
@@ -73,33 +78,21 @@ export const SchedulingDetails = () => {
   const handleSchedulingComplete = async () => {
     setLoading(true)
     try {
-      const schedulingByCar = await api.get(`/schedules_bycars/${car.id}`)
-      console.log(schedulingByCar)
-
-      const unavailable_dates = [
-        ...schedulingByCar.data.unavailable_dates,
-        ...dates,
-      ]
-
-      await api.post("/schedules_byuser", {
-        user_id: 1,
-        car: car,
-        period: period,
+      await api.post("/rentals", {
+        car_id: car.id,
+        start_date: period.startFormatted,
+        end_date: period.endFormatted,
+        total,
       })
 
-      const response = await api.put(`/schedules_bycars/${car.id}`, {
-        id: car.id,
-        unavailable_dates,
-      })
-      if (response.status !== 200) {
-        throw new Error("bad request")
-      }
       navigate("Confirmation", {
         title: "Carro alugado!",
-        message: `Agora você só precisa ir{'\n'}até a concessionária da RENTX`,
+        message: `Agora você só precisa ir{'\n'}até a concessionária da RENTX\npegar o seu automóvel.`,
       })
     } catch (err) {
+      setLoading(false)
       Alert.alert("Não foi possível confirmar o agendamento.")
+      console.log(err)
     }
   }
   const theme = useTheme()

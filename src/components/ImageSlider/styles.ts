@@ -1,6 +1,8 @@
 import { Dimensions } from "react-native"
 import styled from "styled-components/native"
 
+import FastImage from "react-native-fast-image"
+
 interface ImageIndexProps {
   active: boolean
 }
@@ -22,7 +24,7 @@ export const CardWrapper = styled.View`
   align-items: center;
   justify-content: center;
 `
-export const CardImage = styled.Image`
+export const CardImage = styled(FastImage)`
   width: 280px;
   height: 132px;
 `
